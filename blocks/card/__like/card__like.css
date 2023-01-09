@@ -1,0 +1,16 @@
+.card__like {
+  width: 22px;
+  height: 19px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.card__like:hover {
+  opacity: 0.5;
+}
+
+.card__like:active {
+  background-color: #000000;
+}

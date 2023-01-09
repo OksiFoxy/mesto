@@ -1,0 +1,13 @@
+.card__description {
+  width: 246px;
+  height: 23px;
+  margin: 0;
+  padding: 25px 15px 31px 21px;
+  background-color: #FFFFFF;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
