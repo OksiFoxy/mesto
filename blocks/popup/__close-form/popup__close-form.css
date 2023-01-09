@@ -1,0 +1,19 @@
+.popup__close-form {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.popup__close-form:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__close-form {
+    width: 20px;
+    height: 20px;
+  }
+}
