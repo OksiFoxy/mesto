@@ -4,6 +4,9 @@
   padding: 0;
   border: none;
   background-color: transparent;
+  position: absolute;
+  right: -32px;
+  top: -32px;
 }
 
 .popup__close-form:hover {
@@ -15,5 +18,7 @@
   .popup__close-form {
     width: 20px;
     height: 20px;
+    right: -20px;
+    top: -20px;
   }
 }
