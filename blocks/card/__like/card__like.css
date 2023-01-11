@@ -9,8 +9,9 @@
 
 .card__like:hover {
   opacity: 0.5;
+  transition: 0.3s;
 }
 
 .card__like:active {
-  background-color: #000000;
+  color: #000000;
 }
