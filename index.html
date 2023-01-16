@@ -11,8 +11,8 @@
 <body>
   <div class="root">
     <header class="header">
-      <a class="header__logo">
-        <img src="./images/header_logo.svg" alt="Логотип">
+      <a href="#" class="header__link">
+        <img  class="header__logo" src="./images/header_logo.svg" href="#" alt="Логотип">
       </a>
     </header>
     <main class="content">
@@ -21,7 +21,7 @@
         <div class="profile__info">
           <div class="profile__info-content">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <h2 class="profile__subtitle">Исследователь океана</h2>
+            <p class="profile__subtitle">Исследователь океана</p>
           </div>
           <button type="button" class="profile__button-edit" aria-label="Редактировать профиль">
             <img src="./images/button_edit.svg" alt="Кнопка редактирования профиля">        
@@ -92,15 +92,17 @@
       <p class="footer__copyright">&COPY; 2022 Mesto Russia</p>
     </footer>
     <div class="popup">
-      <form class="popup__form" name="popup__form" novalidate>
+      <div class="popup__container">
         <button type="button" class="popup__close-form" aria-label="Закрытие формы редактирования профиля">
-          <img src="./images/close_icon.svg" alt="Кнопка закрытия формы">
+          <img  class="popup__close-image" src="./images/close_icon.svg" alt="Кнопка закрытия формы">
         </button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" class="popup__input popup__input-name" placeholder="Жак-Ив Кусто" name="name" value="">
-        <input type="text" class="popup__input popup__input-job" placeholder="Исследователь океана" name="job" value="">
-        <button type="submit" class="popup__submit-button" aria-label="Сохранение редактированного профиля">Сохранить</button>
-      </form>
+        <form class="popup__form" name="popup__form" novalidate>
+          <input type="text" class="popup__input popup__input_name" placeholder="Жак-Ив Кусто" name="name" value="">
+          <input type="text" class="popup__input popup__input_job" placeholder="Исследователь океана" name="job" value="">
+          <button type="submit" class="popup__submit-button" aria-label="Сохранение редактированного профиля">Сохранить</button>
+        </form>
+      </div>
     </div>
   </div>
   <script src="./scripts/index.js"></script>
