@@ -5,7 +5,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .profile__info-content {
-    flex-direction: column;
+.profile__info-content {
+    align-items: center;
   }
 }

@@ -12,15 +12,3 @@
   -moz-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
 }
-
-@media screen and (max-width: 1024px) {
-  .root {
-    padding: 0 100px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .root {
-    padding: 0 19px;
-  }
-}

@@ -9,8 +9,15 @@
   position: relative;
 }
 
+@media screen and (max-width: 1024px) {
+  .profile {
+    padding: 0 19px;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .profile {
     flex-direction: column;
+    margin: 42px auto 0;
   }
 }
