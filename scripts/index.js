@@ -4,8 +4,8 @@ let jobForm = document.querySelector ('.profile__about');
 let popupProfile = document.querySelector ('.popup');
 let popupProfileOpen = document.querySelector ('.profile__button-edit');
 let popupProfileForm = document.querySelector ('.popup_form');
-let nameInput = document.querySelector ('.popup__input_name');
-let jobInput = document.querySelector ('.popup__input_job');
+let nameInput = document.querySelector ('.popup__input_type_name');
+let jobInput = document.querySelector ('.popup__input_type_job');
 let popupProfileSave = document.querySelector ('.popup__submit-button');
 let popupProfileClose = document.querySelector ('.popup__close');
 
