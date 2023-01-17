@@ -1,4 +1,4 @@
-.profile__subtitle {
+.profile__about {
   max-width: 336px;
   padding: 0;
   margin: 8px 0 0;
@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .profile__subtitle {
+  .profile__about {
     max-width: 189px;
     margin-top: 8px;
     font-size: 14px;
