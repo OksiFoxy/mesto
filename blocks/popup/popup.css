@@ -7,9 +7,15 @@
   left: 50%;
   background: rgba(0, 0, 0, 0.5);
   transform: translate(-50%, -50%);
-  display: none;
   position: fixed;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s linear, visibility 0s 0.3s;
+  z-index: 3;
 }

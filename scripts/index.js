@@ -9,6 +9,14 @@ let jobInput = document.querySelector ('.popup__input_type_job');
 let popupProfileSave = document.querySelector ('.popup__submit-button');
 let popupProfileClose = document.querySelector ('.popup__close');
 
+let popupNewCard = document.querySelector ('.profile__button-add');
+let popupCard = document.querySelector ('.popup_type_card');
+let nameCardInput = document.querySelector ('.popup__input_type_card-name');
+let jobInputLink = document.querySelector ('.popup__input_type_card-link');
+let cardName = document.querySelector ('.card__title');
+let cardImageLink = document.querySelector ('.card__link');
+let popupCardClose = document.querySelector ('.popup__close-card');
+
 // // Открытие формы профайла
 function openProfile () {
   popupProfile.classList.add('popup_opened');
@@ -25,7 +33,7 @@ function closeProfile () {
 
 popupProfileClose.addEventListener ('click', closeProfile);
 
-// Отправка формы
+// Отправка формы профайла
 function handleFormSubmit (evt) {
   evt.preventDefault();
   nameForm.textContent = nameInput.value;
@@ -35,3 +43,19 @@ function handleFormSubmit (evt) {
 }
 
 popupProfile.addEventListener('submit', handleFormSubmit);
+
+// Открытие формы карты
+function newCardForm () {
+  popupCard.classList.add('popup_opened');
+  nameCardInput.value = cardName.textContent;
+  jobInputLink.value = cardImageLink.textContent;
+};
+
+popupNewCard.addEventListener('click', newCardForm);
+
+// Закрытие формы rfhns
+function closePopupCard () {
+  popupCard.classList.remove('popup_opened');
+};
+
+popupCardClose.addEventListener ('click', closePopupCard);
