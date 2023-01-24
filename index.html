@@ -36,7 +36,7 @@
             <button type="button" class="card__delete">
               <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
             </button>
-            <img class="card__image" src="./images/piter.jpg" alt="Собор в Санкт-Петербурге">
+            <img class="card__photo" src="./images/piter.jpg" alt="Собор в Санкт-Петербурге">
             <div class="card__description">
               <h2 class="card__title">Санкт-Петербург</h2>
               <button type="button" class="card__like" >
@@ -48,7 +48,7 @@
             <button type="button" class="card__delete">
               <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
             </button>
-            <img class="card__image" src="./images/dagestan.jpg" alt="Дагестан">
+            <img class="card__photo" src="./images/dagestan.jpg" alt="Дагестан">
             <div class="card__description">
               <h2 class="card__title">Дагестан</h2>
               <button type="button" class="card__like" >
@@ -60,7 +60,7 @@
             <button type="button" class="card__delete">
               <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
             </button>
-            <img class="card__image" src="./images/ingushetia.jpg" alt="Ингушетия, башни">
+            <img class="card__photo" src="./images/ingushetia.jpg" alt="Ингушетия, башни">
             <div class="card__description">
               <h2 class="card__title">Ингушетия</h2>
               <button type="button" class="card__like" >
@@ -72,7 +72,7 @@
             <button type="button" class="card__delete">
               <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
             </button>
-            <img class="card__image" src="./images/osetia.jpg" alt="Осетия.Фото лавочки на высоте 2300 метров">
+            <img class="card__photo" src="./images/osetia.jpg" alt="Осетия.Фото лавочки на высоте 2300 метров">
             <div class="card__description">
               <h2 class="card__title">Осетия</h2>
               <button type="button" class="card__like" >
@@ -84,7 +84,7 @@
             <button type="button" class="card__delete">
               <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
             </button>
-            <img class="card__image" src="./images/abhazia.jpg" alt="Озеро Рица, Абхазия">
+            <img class="card__photo" src="./images/abhazia.jpg" alt="Озеро Рица, Абхазия">
             <div class="card__description">
               <h2 class="card__title">Абхазия</h2>
               <button type="button" class="card__like" >
@@ -96,7 +96,7 @@
             <button type="button" class="card__delete">
               <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
             </button>
-            <img class="card__image" src="./images/roza-hutor.jpg" alt="Роза Хутор">
+            <img class="card__photo" src="./images/roza-hutor.jpg" alt="Роза Хутор">
             <div class="card__description">
               <h2 class="card__title">Роза Хутор</h2>
               <button type="button" class="card__like">
@@ -104,17 +104,16 @@
               </button>
             </div>
           </article>
-          <template id="card">
+
+          <template class="card-template">
             <article class="card">
               <button type="button" class="card__delete">
                 <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
               </button>
-              <img class="card__link" src="#" alt="Альтернативный текст">
+              <img class="card__photo" src="#" alt="Альтернативный текст">
               <div class="card__description">
                 <h2 class="card__title" name=""></h2>
-                <button type="button" class="card__like" >
-                  <img src="./images/card_like.svg" alt="Кнопка лайка">
-                </button>
+                <button type="button" class="card__like"></button>
               </div>
             </article>
           </template>
@@ -139,21 +138,21 @@
 
     <div class="popup popup_type_card">
       <div class="popup__container">
-        <button type="button" class="popup__close-card" aria-label="Закрытие формы редактирования профиля">
+        <button type="button" class="popup__close-card" aria-label="Закрытие формы добавления нового места">
           <img  class="popup__close-image" src="./images/close_icon.svg" alt="Кнопка закрытия формы">
         </button>
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup__form" name="popup__form" novalidate>
-          <input type="text" class="popup__input popup__input_type_card-name" placeholder="Название места" name="name" value="" required>
-          <input type="text" class="popup__input popup__input_type_card-link" placeholder="Ссылка на картинку" name="link" value="" required>
-          <button type="submit" class="popup__submit-button" aria-label="Сохранение редактированного профиля">Создать</button>
+        <form class="popup__form popup__form-card" name="popup__form" novalidate>
+          <input type="text" id="card_name" class="popup__input popup__input_type_card" placeholder="Название места" name="name" value="" required>
+          <input type="text" id="card_link" class="popup__input popup__input_type_card-link" placeholder="Ссылка на картинку" name="link" value="" required>
+          <button type="submit" class="popup__submit-button popup__submit-button-card" aria-label="Сохранение редактированного профиля">Создать</button>
         </form>
       </div>
     </div>
 
     <div class="popup popup_type_photo">
       <div class="popup__photo">
-        <button type="button" class="popup__close" aria-label="Закрытие формы редактирования профиля">
+        <button type="button" class="popup__close" aria-label="Закрытие просмотра полного фото">
           <img  class="popup__close-image" src="./images/close_icon.svg" alt="Кнопка закрытия формы">
         </button>
         <img src="" alt="Альтернативный текст">
@@ -162,6 +161,7 @@
     </div>
 
   </div>
-  <script src="./scripts/index.js"></script>
+  
 </body>
+<script src="./scripts/index.js"></script>
 </html>
