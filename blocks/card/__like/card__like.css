@@ -3,6 +3,7 @@
   height: 19px;
   padding: 0;
   border: none;
+  background: url("../../../images/card_like.svg");
   background-color: transparent;
   cursor: pointer;
 }

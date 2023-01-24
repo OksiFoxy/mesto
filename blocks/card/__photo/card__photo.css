@@ -1,4 +1,4 @@
-.card__image {
+.card__photo {
   width: 282px;
   height: 282px;
   border-top-left-radius: 10px;
@@ -8,7 +8,7 @@
   object-position: center;
 }
 
-.card__image:hover {
+.card__photo:hover {
   content: '';
   z-index: 0;
   background-color: #2A2C2F;
