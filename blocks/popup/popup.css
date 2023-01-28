@@ -9,8 +9,6 @@
   transform: translate(-50%, -50%);
   position: fixed;
   flex-flow: column nowrap;
-  align-items: center;
-  justify-content: center;
   display: flex;
   justify-content: center;
   align-items: center;
