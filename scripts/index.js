@@ -36,12 +36,8 @@ let jobInput = document.querySelector ('.popup__input_type_job');
 let popupProfileSave = document.querySelector ('.popup__submit-button');
 let popupProfileClose = document.querySelector ('.popup__close');
 // Карточки
-let cardsContainer = document.querySelector('.gallery');
-let cardDeleteButton = document.querySelector ('.card__delete');
-let cardImage = document.querySelector ('.card__photo');
-let cardName = document.querySelector ('.card__title');
-let cardLike = document.querySelector ('.card__like');
-let cardTemplate = document.querySelector('.card-template').content.querySelector('.card');
+let cardsGallery = document.querySelector('.cards__list');
+let cardTemplate = document.querySelector('.card-template').content.querySelector('.card__item');
 // Попап добавления карточек
 let popupNewCard = document.querySelector ('.profile__button-add');
 let popupCard = document.querySelector ('.popup_type_card');
@@ -51,8 +47,14 @@ let popupCardTitle = document.querySelector ('.popup__title');
 let inputCardFormName = addCardForm.querySelector('.popup__input_type_card');
 let inputCardFormLink = addCardForm.querySelector('.popup__input_type_card-link');
 let buttonCardForm = addCardForm.querySelector('.popup__submit-button-card');
+// Попап фуллфото
+const popupFullImage = document.querySelector('.popup_full_photo');
+const cardImage = document.querySelector('.card__photo');
+const fullImageTitle = popupFullImage.querySelector('.popup__full-name');
+const fullImage = popupFullImage.querySelector('.popup__full-image');
+const fullImageClose = popupFullImage.querySelector('.popup__close-full');
 
-// РАБОТАЕТ Открытие формы профайла 
+//Открытие формы профайла 
 function openProfile (evt) {
   evt.preventDefault();
   popupProfile.classList.add('popup_opened');
@@ -61,7 +63,7 @@ function openProfile (evt) {
 };
 popupProfileOpen.addEventListener('click', openProfile);
 
-// РАБОТАЕТ Закрытие формы профайла
+//Закрытие формы профайла
 function closeProfile () {
   popupProfile.classList.remove('popup_opened');
 };
@@ -73,23 +75,22 @@ document.addEventListener('keydown', function (evt) {
   }
 });
 
-// РАБОТАЕТ Отправка формы профайла
-function handleFormSubmit () {
+//Отправка формы профайла
+function handleFormSubmit (evt) {
   evt.preventDefault();
   nameForm.textContent = nameInput.value;
   jobForm.textContent = jobInput.value;
-  console.log('Изменения сохранены');
   closeProfile ();
 }
 popupProfile.addEventListener('submit', handleFormSubmit);
 
-// РАБОТАЕТ Открытие формы карточки
+//Открытие формы карточки
 function newCardForm () {
   popupCard.classList.add('popup_opened');
 };
 popupNewCard.addEventListener('click', newCardForm);
 
-// РАБОТАЕТ Закрытие формы создания карты
+//Закрытие формы создания карты
 function closePopupCard () {
   popupCard.classList.remove('popup_opened');
 };
@@ -101,56 +102,80 @@ document.addEventListener('keydown', function (evt) {
   }
 });
 
-// РАБОТАЕТ Функция переключение лайка
-function likeToggleActive (evt) {
-  cardLike.classList.toggle('card__like-active');
-}
-cardLike.addEventListener ('click', likeToggleActive);
-
-//РАБОТАЕТ НО НА ВСЕ Удаление карты
-function deleteCard(evt) {
-  cardsContainer.remove();
-}
-cardDeleteButton.addEventListener('click', deleteCard);
-
-//РАБОТАЕТ добавляются пустые Добавление карточки
-function renderCard(cardElement) {
-  cardsContainer.append(cardElement);
-}
-
-//ВРОДЕ РАБОТАЕТ НО ТОЛЬКО НА ПЕРВУЮ В РАЗМЕТКЕ Создание карточки
+//Создание карточки
 function createCard(card) {
   // Клонируем содержимое тега template
-  const cardElement = cardTemplate.cloneNode(true);
+  const cardElement = cardTemplate.cloneNode('true');
+  const cardImage = cardElement.querySelector ('.card__photo');
+  const cardName = cardElement.querySelector ('.card__title');
   // Наполняем содержимым
-  // Ссылка на картинку
+  // Ссылка на картинку и имя
   cardImage.alt = card.name;
   cardImage.src = card.link;
   // Название карточки
   cardName.textContent = card.name;
+  // Удаление карточки
+  const cardDeleteButton = cardElement.querySelector ('.card__delete');
+  cardDeleteButton.addEventListener('click', deleteCard);
+  // Лайк карточки
+  const cardLike = cardElement.querySelector ('.card__like');
+  cardLike.addEventListener ('click', likeToggleActive);
+    // Увеличение фото карточки
+  cardImage.addEventListener("click", () => {
+    openImageFull(card);
+  });
   return cardElement;
 };
 
-// РАБОТАЕТ ПО КОЛЛИЧЕСТВУ СОЗДАЕТ ПУСТЫЕ Добавление уже данных в массиве карточек
-function loadInitialCards(){
-  initialCards.forEach(function (card){ 
-    const cardElement = createCard(card);
-    renderCard(cardElement);
+//Функция переключение лайка
+function likeToggleActive (evt) {
+  evt.target.classList.toggle('card__like-active');
+}
+
+//Удаление карты
+function deleteCard(evt) {
+  evt.target.closest('.card__item').remove();
+}
+
+//Увеличение фото
+function openImageFull(card) {
+  fullImage.src = card.link;
+  fullImage.alt = card.name;
+  fullImageTitle.textContent = card.name;
+  popupFullImage.classList.add('popup_opened');
+}
+
+//Закрытие full фото
+function closeImageFull () {
+  popupFullImage.classList.remove('popup_opened');
+};
+fullImageClose.addEventListener ('click', closeImageFull);
+
+//Добавление уже данных в массиве карточек
+function renderCard () {
+  initialCards.forEach((item) => {
+    const card = createCard(item);
+    cardsGallery.prepend(card);
   });
 }
-loadInitialCards();
-
-// Cобытиe добавления карточки по кнопке
-function AddFormSubmit(evt){
+// Добавление карточки по кнопке
+function AddFormImage (evt) {
  evt.preventDefault();
- const newCard = {
-  name: inputCardFormName.value,
-  link: inputCardFormLink.value
-};
-const cardElement = createCard(newCard);
- renderCard(cardElement);
- closePopupCard();
+  const newCard = createCard({
+    name: inputCardFormName.value,
+    link: inputCardFormLink.value,
+  });
+  cardsGallery.prepend(newCard);
+  addCardForm.reset();
+  closePopupCard();
 }
-addCardForm.addEventListener('submit', AddFormSubmit);
 
-// loadInitialCards();
+popupCard.addEventListener ('submit', AddFormImage);
+
+document.addEventListener('keydown', function (evt) {
+  if (evt.key ==='Escape') {
+    popupFullImage.classList.remove('popup_opened');
+  }
+});
+
+renderCard();

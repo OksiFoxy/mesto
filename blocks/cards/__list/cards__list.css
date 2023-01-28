@@ -1,21 +1,23 @@
-.gallery {
-  max-width: 880px;
-  margin: 50px auto 0;
-  padding: 0;
+.cards__list {
+  list-style: none;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 17px;
-  grid-row-gap: 20px;
+  column-gap: 17px;
+  row-gap: 20px;
+  justify-content: center;
+  margin 0;
+  padding 0;
+  padding-inline-start: 0px;
 }
 
 @media screen and (max-width: 1024px) {
-  .gallery {
+  .cards__list {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 767px) {
-  .gallery {
+  .cards__list {
     margin-top: 36px;
     grid-template-columns: 1fr;
     grid-gap: 20px;
