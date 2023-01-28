@@ -31,91 +31,19 @@
           <img src="./images/button_add.svg" alt="Кнопка добавления фото">
         </button>
       </section>
-      <section class="gallery">
-          <article class="card">
-            <button type="button" class="card__delete">
-              <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
-            </button>
-            <img class="card__photo" src="./images/piter.jpg" alt="Собор в Санкт-Петербурге">
-            <div class="card__description">
-              <h2 class="card__title">Санкт-Петербург</h2>
-              <button type="button" class="card__like" >
-                <img src="./images/card_like.svg" alt="Кнопка лайка">
-              </button>
-            </div>
-          </article>
-          <article class="card">
-            <button type="button" class="card__delete">
-              <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
-            </button>
-            <img class="card__photo" src="./images/dagestan.jpg" alt="Дагестан">
-            <div class="card__description">
-              <h2 class="card__title">Дагестан</h2>
-              <button type="button" class="card__like" >
-                <img src="./images/card_like.svg" alt="Кнопка лайка">
-              </button>
-            </div>
-          </article>
-          <article class="card">
-            <button type="button" class="card__delete">
-              <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
-            </button>
-            <img class="card__photo" src="./images/ingushetia.jpg" alt="Ингушетия, башни">
-            <div class="card__description">
-              <h2 class="card__title">Ингушетия</h2>
-              <button type="button" class="card__like" >
-                <img src="./images/card_like.svg" alt="Кнопка лайка">
-              </button>
-            </div>
-          </article>
-          <article class="card">
-            <button type="button" class="card__delete">
-              <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
-            </button>
-            <img class="card__photo" src="./images/osetia.jpg" alt="Осетия.Фото лавочки на высоте 2300 метров">
-            <div class="card__description">
-              <h2 class="card__title">Осетия</h2>
-              <button type="button" class="card__like" >
-                <img src="./images/card_like.svg" alt="Кнопка лайка">
-              </button>
-            </div>
-          </article>
-          <article class="card">
-            <button type="button" class="card__delete">
-              <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
-            </button>
-            <img class="card__photo" src="./images/abhazia.jpg" alt="Озеро Рица, Абхазия">
-            <div class="card__description">
-              <h2 class="card__title">Абхазия</h2>
-              <button type="button" class="card__like" >
-                <img src="./images/card_like.svg" alt="Кнопка лайка">
-              </button>
-            </div>
-          </article>
-          <article class="card">
-            <button type="button" class="card__delete">
-              <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
-            </button>
-            <img class="card__photo" src="./images/roza-hutor.jpg" alt="Роза Хутор">
-            <div class="card__description">
-              <h2 class="card__title">Роза Хутор</h2>
-              <button type="button" class="card__like">
-                <img src="./images/card_like.svg" alt="Кнопка лайка">
-              </button>
-            </div>
-          </article>
-
+      <section class="cards">
+        <ul class="cards__list"></ul>
           <template class="card-template">
-            <article class="card">
+            <li class="card__item">
               <button type="button" class="card__delete">
                 <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
               </button>
-              <img class="card__photo" src="#" alt="Альтернативный текст">
+              <img class="card__photo" src="" alt="">
               <div class="card__description">
-                <h2 class="card__title" name=""></h2>
-                <button type="button" class="card__like"></button>
+                <h2 class="card__title"></h2>
+                <button type="button" class="card__like" alt="Поставить лайк"></button>
               </div>
-            </article>
+            </li>
           </template>
       </section>
     </main>
@@ -138,7 +66,7 @@
 
     <div class="popup popup_type_card">
       <div class="popup__container">
-        <button type="button" class="popup__close-card" aria-label="Закрытие формы добавления нового места">
+        <button type="button" class="popup__close popup__close-card" aria-label="Закрытие формы добавления нового места">
           <img  class="popup__close-image" src="./images/close_icon.svg" alt="Кнопка закрытия формы">
         </button>
         <h2 class="popup__title">Новое место</h2>
@@ -150,13 +78,13 @@
       </div>
     </div>
 
-    <div class="popup popup_type_photo">
+    <div class="popup popup_full_photo">
       <div class="popup__photo">
-        <button type="button" class="popup__close" aria-label="Закрытие просмотра полного фото">
-          <img  class="popup__close-image" src="./images/close_icon.svg" alt="Кнопка закрытия формы">
+        <button class="popup__close popup__close-full" class="popup__close" aria-label="Закрытие просмотра полного фото">
+          <img class="popup__close-image" src="./images/close_icon.svg" alt="Кнопка закрытия формы">
         </button>
-        <img src="" alt="Альтернативный текст">
-        <h2 class="popup__card-name"></h2>
+        <img class="popup__full-image" src="" alt="Альтернативный текст">
+        <h2 class="popup__full-name"></h2>
       </div>
     </div>
 

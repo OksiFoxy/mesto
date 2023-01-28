@@ -1,13 +1,13 @@
 .popup__photo {
-  max-width: 75vw;
-  max-height: 75vh;
+  width: 75vw;
+  height: 75vh;
   margin: 0 auto;
   border: none;
-  object-fit: cover;
-  object-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
+  background: none;
+  margin: 0 auto;
   z-index: 3;
 }
