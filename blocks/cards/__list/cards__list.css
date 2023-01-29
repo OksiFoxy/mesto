@@ -5,7 +5,7 @@
   column-gap: 17px;
   row-gap:  20px;
   justify-content: center;
-  padding-inline-start: 0px;
+  padding-inline-start: 0;
 }
 
 @media screen and (max-width: 1024px) {
