@@ -2,8 +2,8 @@
   list-style: none;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-column: 17px;
-  grid-gap: 20px;
+  column-gap: 17px;
+  row-gap: 20px;
   justify-content: center;
   margin 0;
   padding 0;
