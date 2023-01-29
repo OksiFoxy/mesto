@@ -26,7 +26,7 @@ const popupCardButton = popupCardForm.querySelector('.popup__submit-button-card'
 const popupFullImage = document.querySelector('.popup_full_photo');
 const fullImageTitle = popupFullImage.querySelector('.popup__full-name');
 const fullImage = popupFullImage.querySelector('.popup__full-image');
-const fullImageClose = popupFullImage.querySelector('.popup__close');
+const fullImageClose = popupFullImage.querySelector('.popup__close-full');
 
 // Открытие попапов
 function openPopup(popup) {
@@ -142,11 +142,5 @@ function addNewCard (evt) {
 }
 
 popupCard.addEventListener ('submit', addNewCard);
-
-document.addEventListener('keydown', function (evt) {
-  if (evt.key ==='Escape') {
-    popupFullImage.classList.remove('popup__full_photo');
-  }
-});
 
 renderCard();
