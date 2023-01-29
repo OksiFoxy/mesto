@@ -1,0 +1,6 @@
+.popup__full_photo {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.9s linear;
+  background: rgba(0, 0, 0, 0.9);
+}

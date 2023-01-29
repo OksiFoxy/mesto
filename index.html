@@ -33,32 +33,32 @@
       </section>
       <section class="cards">
         <ul class="cards__list"></ul>
-          <template class="card-template">
-            <li class="card__item">
-              <button type="button" class="card__delete">
-                <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
-              </button>
-              <img class="card__photo" src="#" alt="">
-              <div class="card__description">
-                <h2 class="card__title"></h2>
-                <button type="button" class="card__like" alt="Поставить лайк"></button>
-              </div>
-            </li>
-          </template>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&COPY; 2022 Mesto Russia</p>
     </footer>
+    <template class="card-template">
+      <li class="card__item">
+        <button type="button" class="card__delete">
+          <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
+        </button>
+        <img class="card__photo" src="#" alt="">
+        <div class="card__description">
+          <h2 class="card__title"></h2>
+          <button type="button" class="card__like" alt="Поставить лайк"></button>
+        </div>
+      </li>
+    </template>
     <div class="popup popup_type_edit">
       <div class="popup__container">
         <button type="button" class="popup__close" aria-label="Закрытие формы редактирования профиля">
           <img  class="popup__close-image" src="./images/close_icon.svg" alt="Кнопка закрытия формы">
         </button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="popup__form" novalidate>
-          <input type="text" class="popup__input popup__input_type_name" placeholder="Жак-Ив Кусто" name="name" value="" required>
-          <input type="text" class="popup__input popup__input_type_job" placeholder="Исследователь океана" name="about" value="" required>
+        <form class="popup__form popup__form-profile" name="popup__form" novalidate>
+          <input type="text" class="popup__input popup__input_type_name" placeholder="Имя" name="name" value="" required>
+          <input type="text" class="popup__input popup__input_type_job" placeholder="О себе" name="about" value="" required>
           <button type="submit" class="popup__submit-button" aria-label="Сохранение редактированного профиля">Сохранить</button>
         </form>
       </div>
@@ -79,7 +79,7 @@
     </div>
 
     <div class="popup popup_full_photo">
-      <div class="popup__photo">
+      <div class="popup__container_type_full-photo">
         <button class="popup__close popup__close-full" aria-label="Закрытие просмотра полного фото">
           <img class="popup__close-image" src="./images/close_icon.svg" alt="Кнопка закрытия формы">
         </button>
@@ -87,9 +87,8 @@
         <h2 class="popup__full-name"></h2>
       </div>
     </div>
-
   </div>
-  
 </body>
+<script src="./scripts/cards.js"></script>
 <script src="./scripts/index.js"></script>
 </html>
