@@ -1,7 +1,6 @@
 // Форма редактирования профиля
 const profileName = document.querySelector ('.profile__name');
 const profileAbout = document.querySelector ('.profile__about');
-// const popup = document.querySelector ('.popup');
 const popupProfile = document.querySelector ('.popup_type_edit');
 const popupProfileOpen = document.querySelector ('.profile__button-edit');
 const popupProfileForm = document.querySelector ('.popup__form-profile');
