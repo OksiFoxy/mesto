@@ -1,14 +1,14 @@
 // Форма редактирования профиля
 const profileName = document.querySelector ('.profile__name');
 const profileAbout = document.querySelector ('.profile__about');
-const popup = document.querySelector ('.popup');
+// const popup = document.querySelector ('.popup');
 const popupProfile = document.querySelector ('.popup_type_edit');
 const popupProfileOpen = document.querySelector ('.profile__button-edit');
 const popupProfileForm = document.querySelector ('.popup__form-profile');
 const inputProfileName = document.querySelector ('.popup__input_type_name');
 const inputProfileAbout = document.querySelector ('.popup__input_type_job');
 const popupProfileButton = document.querySelector ('.popup__submit-button');
-const popupProfileClose = document.querySelector ('.popup__close');
+const popupProfileClose = popupProfile.querySelector ('.popup__close-profile');
 // Карточки
 const cardsGallery = document.querySelector('.cards__list');
 const cardImage = document.querySelector('.card__photo');
@@ -40,7 +40,7 @@ function closePopup(popup) {
 
 //Открытие формы профайла 
 function openProfile (evt) {
-  openPopup(popup);
+  openPopup(popupProfile);
   inputProfileName.value = profileName.textContent;
   inputProfileAbout.value = profileAbout.textContent;
 };
@@ -57,7 +57,7 @@ function submitFormProfile (evt) {
   evt.preventDefault();
   profileName.textContent = inputProfileName.value;
   profileAbout.textContent = inputProfileAbout.value;
-  closeProfile ();
+  closePopup(popupProfile);
 }
 popupProfileForm.addEventListener('submit', submitFormProfile);
 
@@ -113,12 +113,12 @@ function openImageFull(card) {
   fullImage.src = card.link;
   fullImage.alt = card.name;
   fullImageTitle.textContent = card.name;
-  popupFullImage.classList.add('popup__full_photo');
+  openPopup(popupFullImage);
 }
 
 //Закрытие full фото
 function closeImageFull () {
-  popupFullImage.classList.remove('popup__full_photo');
+  closePopup(popupFullImage);
 };
 fullImageClose.addEventListener ('click', closeImageFull);
 
