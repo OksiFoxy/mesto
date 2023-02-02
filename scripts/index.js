@@ -44,7 +44,7 @@ function closePopupEsc(evt) {
     closePopup(activePopup);
   };
 }
-const popupOverlay = document.querySelector('.popup__overlay');
+const popupOverlay = document.querySelector('.popup_overlay');
 
 function closePopupOverlay(evt) {
   if (evt.target.classList.contains('popup')) {
