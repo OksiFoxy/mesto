@@ -10,14 +10,16 @@ inputElement.addEventListener('input', function (evt) {
   console.log(evt.target.validity.valid);
 });
 
-const showInputError = (formElement, inputElement) => {
+const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-   errorElement.classList.add('popup__input-error-active');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('popup__input-error-active');
 };
 
 const hideInputError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  errorElement.classList.remove('popup__input-error-active')
+  errorElement.textContent = '';
+  errorElement.classList.remove('popup__input-error-active');
 }; 
 
 // Функция, которая проверяет валидность поля
@@ -61,7 +63,10 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add('popup__submit-button-inactive');
+    buttonElement.setAttribute('disabled', true);
   } else {
     buttonElement.classList.remove('popup__submit-button-inactive');
+    buttonElement.classList.add('popup__submit-button-inactive');
+    buttonElement.removeAttribute('disabled');
   }
 };

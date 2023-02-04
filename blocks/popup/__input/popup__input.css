@@ -13,10 +13,23 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  vertical-align: bottom;
 }
 
 @media screen and (max-width: 767px) {
   .popup__input {
     width: 238px;
   }
+}
+
+.popup__input::placeholder {
+  color: #c4c4c4;
+}
+
+.popup__input:focus {
+  outline: none;
+}
+
+.popup__input:active {
+  outline: none;
 }
