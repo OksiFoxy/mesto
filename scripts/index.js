@@ -44,22 +44,16 @@ function closePopupEsc(evt) {
     closePopup(activePopup);
   };
 }
-const popupOverlay = document.querySelector('.popup_overlay');
 
-function closePopupOverlay(evt) {
-  if (evt.target.classList.contains('popup')) {
-    closePopup(popupOverlay);
-};
-}
-popupOverlay.addEventListener('click', closePopupOverlay);
+const popupList = Array.from(document.querySelectorAll('.popup'));
 
-
-// popupOverlay.addEventListener('click', (evt) => {
-//   if (evt.target.classList.contains('popup')) {
-//     closePopup(popupOverlay);
-// }
-// })
-
+popupList.forEach((popup) => {
+  popup.addEventListener('mousedown', function (evt) {
+    if (evt.target.classList.contains("popup_opened") || evt.target.classList.contains("popup__close")) {
+      closePopup(popup);
+    }
+  });
+});
 
 //Открытие формы профайла 
 function openProfile (evt) {
