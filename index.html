@@ -50,13 +50,13 @@
         </div>
       </li>
     </template>
-    <div class="popup popup_overlay popup_type_edit">
+    <div class="popup popup_type_edit">
       <div class="popup__container">
         <button type="button" class="popup__close popup__close-profile" id="button_form-close-edit" name="button_form-close" aria-label="Закрытие формы редактирования профиля">
           <img  class="popup__close-image" src="./images/close_icon.svg" alt="Кнопка закрытия формы">
         </button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form popup__form-profile novalidate" name="form-profile-edit">
+        <form class="popup__form popup__form-profile novalidate" name="form-profile-edit" novalidate>
           <input type="text"  id="profile-name" class="popup__input popup__input_type_name" placeholder="Имя" name="name" value="" minlength="2" maxlength="40" required>
           <span class="profile-name-error popup__input-error"></span>
           <input type="text"  id="profile-about" class="popup__input popup__input_type_job" placeholder="О себе" name="about" value="" minlength="2" maxlength="200" required>
@@ -66,23 +66,23 @@
       </div>
     </div>
 
-    <div class="popup popup_overlay popup_type_card">
+    <div class="popup popup_type_card">
       <div class="popup__container">
         <button type="button" class="popup__close popup__close-card" id="button_form-close-card" name="form-card-add" aria-label="Закрытие формы добавления нового места">
           <img  class="popup__close-image" src="./images/close_icon.svg" alt="Кнопка закрытия формы">
         </button>
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup__form popup__form-card novalidate" name="popup__form">
+        <form class="popup__form popup__form-card novalidate" name="popup__form" novalidate>
           <input type="text" id="cardname" class="popup__input popup__input_type_card" placeholder="Название места" name="name" value="" minlength="2" maxlength="30" required>
           <span class="cardname-error popup__input-error"></span>
           <input type="url" id="cardlink" class="popup__input popup__input_type_card-link" placeholder="Ссылка на картинку" name="link" value="" required>
           <span class="cardlink-error popup__input-error"></span>
-          <button type="submit" class="popup__submit-button" id="submit-card" name="submit-card" aria-label="Сохранение редактированного профиля">Создать</button>
+          <button type="submit" class="popup__submit-button" id="submit-card" name="submit-card" aria-label="Сохранение редактированного профиля" disabled>Создать</button>
         </form>
       </div>
     </div>
 
-    <div class="popup popup_overlay popup_full_photo">
+    <div class="popup popup_full_photo">
       <div class="popup__photo">
         <button class="popup__close popup__close-full" id="button_form-close-full" name="button_form-close" aria-label="Закрытие просмотра полного фото">
           <img class="popup__close-image" src="./images/close_icon.svg" alt="Кнопка закрытия формы">
