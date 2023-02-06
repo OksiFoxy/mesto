@@ -32,7 +32,6 @@ function openPopup(popup) {
 }
 
 // Закрытие попапов
-
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEsc);

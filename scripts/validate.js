@@ -3,43 +3,44 @@ const selectors = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit-button',
   inactiveButtonClass: 'popup__submit-button-inactive',
+  inputErrorClass: "popup__input_type_error",
   errorClass: 'popup__input-error-active'
 };
 
-const errorElement = (formElement, inputElement) => formElement.querySelector(`.${inputElement.id}-error`);
+const showInputError = (formElement, inputElement, selectors) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  errorElement.textContent = inputElement.validationMessage;
+  errorElement.classList.add(selectors.errorClass);
+  inputElement.classList.add(selectors.inputErrorClass);
+}
 
-const inputListAll = (formElement) => Array.from(formElement.querySelectorAll(selectors.inputSelector));
-
-const showInputError = (formElement, inputElement, errorMessage) => {
-  errorElement(formElement, inputElement).textContent = errorMessage;
-  errorElement(formElement, inputElement).classList.add(selectors.errorClass);
-};
-
-const hideInputError = (formElement, inputElement) => {
-  errorElement(formElement, inputElement).textContent = '';
-  errorElement(formElement, inputElement).classList.remove(selectors.errorClass);
-};
+const hideInputError = (formElement, inputElement, selectors) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  errorElement.textContent = '';
+  errorElement.classList.remove(selectors.errorClass);
+  inputElement.classList.remove(selectors.inputErrorClass);
+}
 
 // Функция, которая проверяет валидность поля
-const isValid = (formElement, inputElement) => {
+const validateInput = (formElement, inputElement, selectors) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, selectors);
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, selectors);
   }
 }
 
-// Вызовем функцию isValid на каждый ввод символа
-const setEventListeners = (formElement) => {
-  const buttonElement = formElement.querySelector(selectors.submitButtonSelector);
-  inputListAll(formElement).forEach((inputElement) => {
-    inputElement.addEventListener('input', () => {
-      isValid(formElement, inputElement);
-      toggleButtonState(inputListAll(formElement), buttonElement);
+// Вызовем функцию validateInput на каждый ввод символа
+const setEventListeners = (formElement, buttonElement, selectors) => {
+  const inputList = Array.from(formElement.querySelectorAll(selectors.inputSelector));
+  toggleButtonState(inputList, buttonElement, selectors);
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener("input", () => {
+      validateInput(formElement, inputElement, selectors);
+      toggleButtonState(inputList, buttonElement, selectors);
+    });
   });
-});
-  toggleButtonState(inputListAll(formElement), buttonElement);
-};
+}
 
 // Блокировка кнопки
 const hasInvalidInput = (inputList) => {
@@ -47,29 +48,34 @@ const hasInvalidInput = (inputList) => {
     !inputElement.validity.valid);
 }
 
-const toggleButtonState = (inputList, buttonElement) => {
+const onDisableButton = (buttonElement, selectors) => {
+  buttonElement.classList.add(selectors.inactiveButtonClass);
+  buttonElement.setAttribute('disabled', 'disabled');
+}
+
+const offDisableButton = (buttonElement, selectors) => {
+  buttonElement.classList.remove(selectors.inactiveButtonClass);
+  buttonElement.removeAttribute('disabled');
+}
+
+const toggleButtonState = (inputList, buttonElement, selectors) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(selectors.inactiveButtonClass);
-    buttonElement.setAttribute('disabled', 'disabled');
+    onDisableButton(buttonElement, selectors);
   } else {
-    buttonElement.classList.remove(selectors.inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
+    offDisableButton(buttonElement, selectors);
   }
-};
+}
 
 // Функция с валидацией
-const enableValidation = () => {
+function enableValidation(selectors) {
   const formList = Array.from(document.querySelectorAll(selectors.formSelector));
   formList.forEach((formElement) => {
-    setEventListeners(formElement);
+    const submitButton = formElement.querySelector(selectors.submitButtonSelector);
+    formElement.addEventListener("submit", () => {
+      onDisableButton(submitButton, selectors);
+    });
+    setEventListeners(formElement, submitButton, selectors);
   });
-};
-
-// Проверяем и обнуляем
-const resetValidation = (formElement) => {
-  const submitButton = formElement.querySelector(selectors.submitButtonSelector);
-  inputListAll(formElement).forEach(inputElement => hideInputError(formElement, inputElement));
-  toggleButtonState(inputListAll(formElement), submitButton);
-};
+}
 
 enableValidation(selectors);
