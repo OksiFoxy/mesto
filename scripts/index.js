@@ -62,7 +62,7 @@ function openProfile(evt) {
   openPopup(popupProfile);
   inputProfileName.value = profileName.textContent;
   inputProfileAbout.value = profileAbout.textContent;
-};
+}
 popupProfileOpen.addEventListener('click', openProfile);
 
 //Отправка формы профайла
@@ -77,7 +77,7 @@ popupProfileForm.addEventListener('submit', submitFormProfile);
 //Открытие формы карточки
 function openPopupCard() {
   openPopup(popupCard);
-};
+}
 popupNewCard.addEventListener('click', openPopupCard);
 
 //Создание карточки
@@ -103,7 +103,7 @@ function createCard(card) {
     openImageFull(card);
   });
   return cardElement;
-};
+}
 
 //Функция переключение лайка
 function likeToggleActive(evt) {
