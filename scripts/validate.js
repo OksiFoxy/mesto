@@ -44,7 +44,7 @@ const setEventListeners = (formElement, buttonElement, selectors) => {
 
 // Блокировка кнопки
 const hasInvalidInput = (inputList) => {
-  return inputList.some(inputElement => 
+  return inputList.some(inputElement =>
     !inputElement.validity.valid);
 }
 
