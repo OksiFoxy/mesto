@@ -12,14 +12,14 @@ const showInputError = (formElement, inputElement, selectors) => {
   errorElement.textContent = inputElement.validationMessage;
   errorElement.classList.add(selectors.errorClass);
   inputElement.classList.add(selectors.inputErrorClass);
-}
+};
 
 const hideInputError = (formElement, inputElement, selectors) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = '';
   errorElement.classList.remove(selectors.errorClass);
   inputElement.classList.remove(selectors.inputErrorClass);
-}
+};
 
 // Функция, которая проверяет валидность поля
 const validateInput = (formElement, inputElement, selectors) => {
@@ -28,7 +28,7 @@ const validateInput = (formElement, inputElement, selectors) => {
   } else {
     hideInputError(formElement, inputElement, selectors);
   }
-}
+};
 
 // Вызовем функцию validateInput на каждый ввод символа
 const setEventListeners = (formElement, buttonElement, selectors) => {
@@ -40,23 +40,23 @@ const setEventListeners = (formElement, buttonElement, selectors) => {
       toggleButtonState(inputList, buttonElement, selectors);
     });
   });
-}
+};
 
 // Блокировка кнопки
 const hasInvalidInput = (inputList) => {
   return inputList.some(inputElement =>
     !inputElement.validity.valid);
-}
+};
 
 const onDisableButton = (buttonElement, selectors) => {
   buttonElement.classList.add(selectors.inactiveButtonClass);
   buttonElement.setAttribute('disabled', 'disabled');
-}
+};
 
 const offDisableButton = (buttonElement, selectors) => {
   buttonElement.classList.remove(selectors.inactiveButtonClass);
   buttonElement.removeAttribute('disabled');
-}
+};
 
 const toggleButtonState = (inputList, buttonElement, selectors) => {
   if (hasInvalidInput(inputList)) {
@@ -64,7 +64,7 @@ const toggleButtonState = (inputList, buttonElement, selectors) => {
   } else {
     offDisableButton(buttonElement, selectors);
   }
-}
+};
 
 // Функция с валидацией
 function enableValidation(selectors) {
