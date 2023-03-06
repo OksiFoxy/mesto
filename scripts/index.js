@@ -13,7 +13,7 @@ const inputProfileAbout = document.querySelector('.popup__input_type_job');
 const popupProfileButton = document.querySelector('.popup__submit-button');
 // Карточки
 const cardsGallery = document.querySelector('.cards__list');
-const cardTemplate = document.querySelector('.card-template').content.querySelector('.card');
+const cardTemplate = document.querySelector('.card-template').content.querySelector('.card__item');
 // Попап добавления карточек
 const popupNewCard = document.querySelector('.profile__button-add');
 const popupCard = document.querySelector('.popup_type_card');
@@ -122,14 +122,14 @@ function createCard(item) {
 }
 
 // Добавление уже данных в массиве карточек
-// function renderCards(items) {
-//   items.forEach(item => {
-//     cardsGallery.prepend(createCard({name: item.name, link: item.link}));
-//   });
-// };
-initialCards.forEach((item) => {
-  cardsGallery.prepend(createCard(item.name, item.link));
-});
+function renderCards(items) {
+  items.forEach(item => {
+    cardsGallery.prepend(createCard({name: item.name, link: item.link}));
+  });
+};
+// items.forEach((item) => {
+//   cardsGallery.prepend(createCard(item.name, item.link));
+// });
 
 // Отправка формы карточки
 function addNewCard(evt) {
@@ -139,4 +139,4 @@ function addNewCard(evt) {
 };
 popupCard.addEventListener('submit', addNewCard);
 
-// renderCards(initialCards);
+renderCards(initialCards);
