@@ -11,7 +11,7 @@
 <body>
   <div class="root">
     <header class="header">
-      <a href="#" class="header__link">
+      <a href="" class="header__link">
         <img  class="header__logo" src="./images/header_logo.svg" alt="Логотип">
       </a>
     </header>
@@ -38,12 +38,12 @@
     <footer class="footer">
       <p class="footer__copyright">&COPY; 2022 Mesto Russia</p>
     </footer>
-    <template class="card-template">
-      <li class="card__item">
+    <template class="card-template" id="card-template">
+      <li class="card">
         <button type="button" class="card__delete">
           <img src="./images/card_delete.svg" alt="Кнопка удаления карточки места">
         </button>
-        <img class="card__photo" src="#" alt="">
+        <img class="card__photo" src="" alt="">
         <div class="card__description">
           <h2 class="card__title"></h2>
           <button type="button" class="card__like" alt="Поставить лайк"></button>
@@ -87,13 +87,11 @@
         <button class="popup__close popup__close-full" id="button_form-close-full" name="button_form-close" aria-label="Закрытие просмотра полного фото">
           <img class="popup__close-image" src="./images/close_icon.svg" alt="Кнопка закрытия формы">
         </button>
-        <img class="popup__full-image" src="#" alt="Альтернативный текст">
+        <img class="popup__full-image" src="" alt="Альтернативный текст">
         <h2 class="popup__full-name"></h2>
       </div>
     </div>
   </div>
+  <script type="module" src="./scripts/index.js"></script>
 </body>
-<script src="./scripts/validate.js"></script>
-<script src="./scripts/cards.js"></script>
-<script src="./scripts/index.js"></script>
 </html>
