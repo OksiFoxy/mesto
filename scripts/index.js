@@ -55,9 +55,10 @@ popupList.forEach((popup) => {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
-  validationsCardForm.resetValidation();
-  validationsProfileForm.resetValidation();
+  resetValidation();
 }
+// validationsCardForm.resetValidation();
+// validationsProfileForm.resetValidation();
 //Закрытие попапов
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
@@ -93,10 +94,10 @@ function openProfile(evt) {
 popupProfileOpen.addEventListener('click', openProfile);
 
 //Открытие формы карточки
-function openImageFull() {
-  fullImage.src = card.link;
-  fullImage.alt = card.name;
-  fullImageTitle.textContent = card.name;
+function openImageFull(name, link) {
+  fullImage.src = this._link;
+  fullImage.alt = this._name;
+  fullImageTitle.textContent = this._name;
   openPopup(popupFullImage);
 }
 
@@ -127,9 +128,6 @@ function renderCards(items) {
     cardsGallery.prepend(createCard({name: item.name, link: item.link}));
   });
 };
-// items.forEach((item) => {
-//   cardsGallery.prepend(createCard(item.name, item.link));
-// });
 
 // Отправка формы карточки
 function addNewCard(evt) {
