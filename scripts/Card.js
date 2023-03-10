@@ -35,6 +35,6 @@ export default class Card {
   _setEventListener() {
     this._cardLike.addEventListener('click', () => this. _likeToggleActive());
     this._buttonDelete.addEventListener('click', () => this._deleteCard());
-    this._photo.addEventListener('click', () => this._openImageFull(this._photo, this._title));
+    this._photo.addEventListener('click', () => this._openImageFull(this._link, this._name));
   }
 }

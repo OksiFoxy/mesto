@@ -55,10 +55,8 @@ popupList.forEach((popup) => {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
-  resetValidation();
 }
-// validationsCardForm.resetValidation();
-// validationsProfileForm.resetValidation();
+
 //Закрытие попапов
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
@@ -94,10 +92,10 @@ function openProfile(evt) {
 popupProfileOpen.addEventListener('click', openProfile);
 
 //Открытие формы карточки
-function openImageFull(name, link) {
-  fullImage.src = this._link;
-  fullImage.alt = this._name;
-  fullImageTitle.textContent = this._name;
+function openImageFull(link, name) {
+  fullImage.src = link;
+  fullImage.alt = name;
+  fullImageTitle.textContent = name;
   openPopup(popupFullImage);
 }
 
