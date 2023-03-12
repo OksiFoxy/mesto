@@ -133,6 +133,7 @@ function addNewCard(evt) {
   cardsGallery.prepend(createCard({name: inputCardFormName.value, link: inputCardFormLink.value }));
   closePopup(popupCard);
   popupCardForm.reset();
+  validationsCardForm.resetValidation();
 };
 popupCard.addEventListener('submit', addNewCard);
 
