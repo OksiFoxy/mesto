@@ -1,6 +1,7 @@
 import Card from './Card.js';
 import { initialCards, selectors } from './constants.js';
 import FormValidator from './FormValidator.js';
+import './pages/index.css';
 
 // Форма редактирования профиля
 const profileName = document.querySelector('.profile__name');
