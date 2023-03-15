@@ -1,7 +1,9 @@
 export default class FormValidator {
   constructor(selectors, formElement){
-    this._selectors = selectors; //_settingsInput
+    this._selectors = selectors;
     this._formElement = formElement;
+    this.inputList = Array.from(this._formElement.querySelectorAll(this._selectors.inputSelector));
+    this.buttonElement = this._formElement.querySelector(this._selectors.submitButtonSelector);
   }
 
   _showInputError = (inputElement) => {
@@ -30,8 +32,6 @@ export default class FormValidator {
 
   // Вызовем функцию isValid (validateInput) на каждый ввод символа
   _setEventListeners = () => {
-    this.inputList = Array.from(this._formElement.querySelectorAll(this._selectors.inputSelector));
-    this.buttonElement = this._formElement.querySelector(this._selectors.submitButtonSelector);
     this._toggleButtonState();
     this.inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {

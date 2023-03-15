@@ -1,48 +1,38 @@
 import Card from "../components/Card.js";
 import { initialCards, selectors } from '../components/constants.js';
-// import FormValidator from '../components/FormValidator.js';
-import '../pages/index.css'
+import FormValidator from '../components/FormValidator.js';
+// import '../pages/index.css'
 import Section from "../components/Section.js";
-import Popup from "../components/Popup.js";
-// import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
 // Форма редактирования профиля
-const profileName = document.querySelector('.profile__name');
-const profileAbout = document.querySelector('.profile__about');
-const popup = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup_type_edit');
-const popupProfileOpen = document.querySelector('.profile__button-edit');
-const popupProfileForm = document.querySelector('.popup__form-profile');
+const buttonProfileOpen = document.querySelector('.profile__button-edit');
 const inputProfileName = document.querySelector('.popup__input_type_name');
 const inputProfileAbout = document.querySelector('.popup__input_type_job');
-const popupProfileButton = document.querySelector('.popup__submit-button');
 // Карточки
-const itemsGallery = document.querySelector('.cards__list');
 const cardTemplate = document.querySelector('.card-template').content.querySelector('.card__item');
 // Попап добавления карточек
-const popupNewCard = document.querySelector('.profile__button-add');
+const buttonNewCard = document.querySelector('.profile__button-add');
 const popupCard = document.querySelector('.popup_type_card');
-const popupCardForm = document.querySelector('.popup__form-card');
-const popupCardTitle = document.querySelector('.popup__title');
-const inputCardFormName = popupCardForm.querySelector('.popup__input_type_card');
-const inputCardFormLink = popupCardForm.querySelector('.popup__input_type_card-link');
-// Попап фуллфото
-// const popupFullImage = document.querySelector('.popup_full_photo');
-// const fullImageTitle = popupFullImage.querySelector('.popup__full-name');
-// const fullImage = popupFullImage.querySelector('.popup__full-image');
-// const popupList = Array.from(document.querySelectorAll('.popup'));
-// const buttonCloseList = document.querySelectorAll('.popup__close');
-// // Включаем валидацию форм пока выключила
-// const validationsProfileForm = validationForm (popupProfile);
-// const validationsCardForm = validationForm (popupCard);
+const formPopupCard = document.querySelector('.popup__form-card');
 
-// function validationForm (formElement) {
-//   const validForm = new FormValidator (selectors, formElement);
-//   validForm.enableValidation();
-//   return validForm;
-// }
+// ВАЛИДАЦИЯ ОК
+const validationsProfileForm = new FormValidator (selectors, popupProfile);
+validationsProfileForm.enableValidation();
+
+const validationsCardForm = new FormValidator (selectors, popupCard);
+validationsCardForm.enableValidation();
+
+// ПОПАП ФУЛЛ ФОТО
+const popupFullImage = new PopupWithImage('.popup_full_photo');
+
+const handleCardClick = (name, link) => {                                
+  popupFullImage.open(name, link);
+};
+popupFullImage.setEventListeners();
 
 //Создание карточки оставляем
 function createCard(item) {
@@ -52,55 +42,55 @@ function createCard(item) {
 }
 
 // Добавление уже данных в массиве карточек меняем с помощью класса Section
-const renderCards = new Section ({
+const itemsGallery = new Section ({
   items: initialCards,
   renderer: (item) => {
-    itemsGallery.addItem(createCard({name: item.name, link: item.link}));
+    const cardElement = createCard ({name: item.name, link: item.link});
+    itemsGallery.addItem(cardElement);
   }},
   ".cards__list"
 );
-renderCards.renderer()
+itemsGallery.renderCards();
 
 // Открытие формы новой карточки переделать в экземпляр новый формы
-function openPopupCard() {
-  popupCard.open();
+const openPopupCard = () => {
+  formPopupCard.reset();
+  validationsCardForm.resetValidation();
+  popupAddNewCard.open();
 }
-popupNewCard.addEventListener('click', openPopupCard);
+buttonNewCard.addEventListener('click', openPopupCard);
 
-// Отправка формы карточки переделать экземпляр карточки и потом уже отправку?
-const addNewCard = new PopupWithForm(".popup_type_card", {
-  submitForm: () => {
-    itemsGallery.addItem(createCard({name: inputCardFormName.value, link: inputCardFormLink.value }));
+// Отправка формы карточки переделать экземпляр карточки
+const popupAddNewCard = new PopupWithForm(".popup_type_card", {
+  submitForm: (data) => {
+    const newCard = createCard(data);
+    itemsGallery.addItem(newCard);
     }
   },
 )
-addNewCard.setEventListeners()
+popupAddNewCard.setEventListeners();
 
-//Фулл фото попапы пока выключила
-// const popupFullImage = new PopupWithImage('.popup_full_photo');
-
-// function handleCardClick(name, link) {                                      
-//   popupFullImage.open(name, link);
-// };
-// popupFullImage.setEventListeners();
-
-
-// ПРОФИЛЬ тут где то должен быть экземпляр? И валидацию добавить 
-const profileInfo = new UserInfo({
+// ПРОФИЛЬ тут где то должен быть экземпляр?
+const profileNewInfo = new UserInfo({
   profileNameSelector: ".profile__name",
   profileAboutSelector: ".profile__about",
 })
-//Открытие формы профайла
-function openProfile(profileInfo) {
-  popupProfile.open();
-  profileInfo.getUserInfo()
-}
-popupProfileOpen.addEventListener('click', openProfile);
 
-// Отправка формы профайла
-function submitFormProfile(evt) {
-  evt.preventDefault();
-  setUserInfo();
-  popupProfile.closePopup();
+const popupEditProfile = new PopupWithForm(".popup_type_edit", {
+  submitForm: (data) => {
+    console.log(data);
+    profileNewInfo.setUserInfo(data.name, data.about);
+    popupEditProfile.close();
+    }
+} 
+)
+popupEditProfile.setEventListeners();
+
+//Открытие формы профайла
+const openProfile = () => {
+  const dataUser = profileNewInfo.getUserInfo();
+  inputProfileName.value = dataUser.name;
+  inputProfileAbout.value = dataUser.about;
+  popupEditProfile.open();
 }
-popupProfileForm.addEventListener('submit', submitFormProfile);
+buttonProfileOpen.addEventListener('click', openProfile);

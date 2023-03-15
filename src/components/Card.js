@@ -1,3 +1,4 @@
+// Тут все ок
 export default class Card {
   constructor (name, link, cardTemplate, handleCardClick) {
     this._name = name;

@@ -1,8 +1,7 @@
-// ТУТ ВРОДЕ ВСЕ ПЕРЕНЕСЕНЫ
+// Тут все ок
 export default class Popup {
-  constructor(popup) {
-    this._popup = document.querySelector(popup);
-    this._closeButton = this._popup.querySelector('.popup__close');
+  constructor(popupSelector) {
+    this._popup = document.querySelector(popupSelector);
   }
 
   open() {
@@ -21,10 +20,10 @@ export default class Popup {
     };
   }
 
-  setEventListeners(popup) {
-    this._popup.addEventListener('mousedown', function (evt) {
-      if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
-        this.close(popup);
+  setEventListeners() {
+    this._popup.addEventListener('mousedown', (evt) => {
+      if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
+        this.close();
       }
     });
   }
