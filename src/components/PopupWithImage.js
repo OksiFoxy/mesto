@@ -8,7 +8,7 @@ export default class PopupWithImage extends Popup {
   }
 
 // Переделанный openFullImage
-  open(name, link) {
+  open(link, name) {
     this._fullImage.src = link;
     this._fullImage.alt = name;
     this._fullImageTitle.textContent = name;
