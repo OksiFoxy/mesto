@@ -4,7 +4,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: { main: './src/pages/index.js' },
+  entry: {
+    main: './src/pages/index.js'},
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
@@ -19,7 +20,7 @@ module.exports = {
     open: true // сайт будет открываться сам при запуске npm run dev
   },
   module: {
-    rules: [ // rules — это массив правил
+    rules: [ // rules — это массив прави
       // добавим в него объект правил для бабеля
       {
         // регулярное выражение, которое ищет все js файлы
@@ -30,7 +31,7 @@ module.exports = {
         exclude: '/node_modules/'
       },
       {
-        test: /\.(png|svg|jpg|gif|ico|woff(2)?|eot|ttf|otf)$/,
+        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
         type: 'asset/resource'
       },
       {
