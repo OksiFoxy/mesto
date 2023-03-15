@@ -1,9 +1,9 @@
 export default class Card {
-  constructor (name, link, cardTemplate, openImageFull) {
+  constructor (name, link, cardTemplate, handleCardClick) {
     this._name = name;
     this._link = link;
     this._cardTemplate = cardTemplate;
-    this._openImageFull = openImageFull;
+    this._handleCardClick = handleCardClick;
   }
   // Создание карточки
   generateCard() {
@@ -20,21 +20,18 @@ export default class Card {
     return this._cardElement;
   }
 
-//Удаление карточки
   _deleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
   }
 
-//Лайк карточки
   _likeToggleActive() {
     this._cardLike.classList.toggle('card__like-active');
   }
 
-//Навешивание событий не работает?
   _setEventListener() {
-    this._cardLike.addEventListener('click', () => this. _likeToggleActive());
+    this._cardLike.addEventListener('click', () => this._likeToggleActive());
     this._buttonDelete.addEventListener('click', () => this._deleteCard());
-    this._photo.addEventListener('click', () => this._openImageFull(this._link, this._name));
+    this._photo.addEventListener('click', () => this._handleCardClick(this._link, this._name));
   }
 }
