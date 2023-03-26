@@ -25,6 +25,7 @@ const buttonNewCard = document.querySelector('.profile__button-add');
 const popupCard = document.querySelector('.popup_type_card');
 const formPopupCard = document.querySelector('.popup__form-card');
 const popupAvatar = document.querySelector('.popup_avatar');
+const formPopupAvatar = document.querySelector('.popup__form-avatar');
 
 // ВАЛИДАЦИЯ
 const validationsProfileForm = new FormValidator (selectors, popupProfile);
@@ -33,7 +34,7 @@ validationsProfileForm.enableValidation();
 const validationsCardForm = new FormValidator (selectors, popupCard);
 validationsCardForm.enableValidation();
 
-const validationsAvatarForm = new FormValidator (selectors, popupCard);
+const validationsAvatarForm = new FormValidator (selectors, popupAvatar);
 validationsAvatarForm.enableValidation();
 
 const api = new Api(apiConfig);
@@ -45,7 +46,7 @@ let userId;
 function createCard(item) {
   const card = new Card(item.name, item.link, cardTemplate, userId, {cardId: item._id, authorId: item.owner._id, }, {
     // Увеличение
-    handleCardClick: (name, link) => {popupFullImage.open(name, link)},
+    handleCardClick: (link, name) => {popupFullImage.open(name, link)},
     // Удаление
     handleCardDelete: (cardId, cardElement) => {popupCardDelete.open(cardId, cardElement)},
     // Добавление лайка
@@ -163,7 +164,6 @@ const popupEditAvatar = new PopupWithForm(".popup_avatar", {
 // Слушать кнопки попапа с формой редактирования аватара
 buttonProfileAvatar.addEventListener('click', () => {
   popupEditAvatar.open();
-  validationsAvatarForm.enableValidation();
 });
 
 //СЛУШАТЕЛЬ ФОРМЫ
