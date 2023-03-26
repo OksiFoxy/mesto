@@ -16,15 +16,18 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/profile__avatar.jpg')%>" alt="Аватарка пользователя">
+        <div class="profile__avatar-section">
+          <img class="profile__avatar" src="" alt="Аватарка пользователя">
+          <button class="profile__avatar-button" type="button" aria-label="Редактировать аватар"></button>
+        </div>
         <div class="profile__info">
           <div class="profile__info-content">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <p class="profile__about">Исследователь океана</p>
+            <h1 class="profile__name"></h1>
+            <p class="profile__about"></p>
           </div>
           <button type="button" class="profile__button-edit" aria-label="Редактировать профиль"></button>
         </div>
-        <button type="button" class="profile__button-add" aria-label="Добавить фото"></button>
+        <button type="button" class="profile__button-add" aria-label="Добавить место"></button>
       </section>
       <section class="cards">
         <ul class="cards__list"></ul>
@@ -39,7 +42,10 @@
         <img class="card__photo" src="#" alt="">
         <div class="card__description">
           <h2 class="card__title"></h2>
-          <button type="button" class="card__like" alt="Поставить лайк"></button>
+          <div class="cards__like-area">
+            <button type="button" class="card__like" alt="Поставить лайк"></button>
+            <span class="card__like-counter">0</span>
+          </div>
         </div>
       </li>
     </template>
@@ -49,11 +55,14 @@
           name="button_form-close" aria-label="Закрытие формы редактирования профиля"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form popup__form-profile novalidate" name="form-profile-edit" novalidate>
-          <input type="text"  id="profile-name" class="popup__input popup__input_type_name" placeholder="Имя" name="name" value="" minlength="2" maxlength="40" required>
+          <input type="text"  id="profile-name" class="popup__input popup__input_type_name"
+          placeholder="Имя" name="name" value="" minlength="2" maxlength="40" required>
           <span class="profile-name-error popup__input-error"></span>
-          <input type="text"  id="profile-about" class="popup__input popup__input_type_job" placeholder="О себе" name="about" value="" minlength="2" maxlength="200" required>
+          <input type="text"  id="profile-about" class="popup__input popup__input_type_job"
+          placeholder="О себе" name="about" value="" minlength="2" maxlength="200" required>
           <span class="profile-about-error popup__input-error"></span>
-          <button type="submit" class="popup__submit-button" id="submit-profile" name="submit-profile" aria-label="Сохранение редактированного профиля">Сохранить</button>
+          <button type="submit" class="popup__submit-button" id="submit-profile" name="submit-profile"
+          aria-label="Сохранение редактированного профиля">Сохранить</button>
         </form>
       </div>
     </div>
@@ -64,11 +73,14 @@
           name="form-card-add" aria-label="Закрытие формы добавления нового места"></button>
         <h2 class="popup__title">Новое место</h2>
         <form class="popup__form popup__form-card novalidate" name="popup__form" novalidate>
-          <input type="text" id="cardname" class="popup__input popup__input_type_card" placeholder="Название места" name="name" value="" minlength="2" maxlength="30" required>
+          <input type="text" id="cardname" class="popup__input popup__input_type_card"
+          placeholder="Название места" name="name" value="" minlength="2" maxlength="30" required>
           <span class="cardname-error popup__input-error"></span>
-          <input type="url" id="cardlink" class="popup__input popup__input_type_card-link" placeholder="Ссылка на картинку" name="link" value="" required>
+          <input type="url" id="cardlink" class="popup__input popup__input_type_card-link"
+          placeholder="Ссылка на картинку" name="link" value="" required>
           <span class="cardlink-error popup__input-error"></span>
-          <button type="submit" class="popup__submit-button" id="submit-card" name="submit-card" aria-label="Сохранение редактированного профиля" disabled>Создать</button>
+          <button type="submit" class="popup__submit-button" id="submit-card" name="submit-card"
+          aria-label="Сохранение редактированного профиля" disabled>Создать</button>
         </form>
       </div>
     </div>
@@ -79,6 +91,33 @@
           name="button_form-close" aria-label="Закрытие просмотра полного фото"></button>
         <img class="popup__full-image" src="#" alt="Альтернативный текст">
         <h2 class="popup__full-name"></h2>
+      </div>
+    </div>
+
+    <div class="popup popup_avatar">
+      <div class="popup__container">
+        <button class="popup__close popup__close-full" id="button_form-close-delete"
+          name="button_form-close" aria-label="Закрытие попапа"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="popup__form popup__form-card novalidate" name="popup__form" novalidate>
+          <input type="url" id="linkavatar" class="popup__input popup__input_type_avatar"
+          placeholder="Ссылка на фото" name="linkavatar" value="" required>
+          <span class="cardname-error popup__input-error"></span>
+          <button type="submit" class="popup__submit-button" id="submit-avatar" name="submit-avatar"
+          aria-label="Сохранение редактированного фото">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_card-delete">
+      <div class="popup__container">
+        <button class="popup__close popup__close-full" id="button_form-close-delete"
+          name="button_form-close" aria-label="Закрытие попапа"></button>
+          <h2 class="popup__title">Вы уверены?</h2>
+          <form class="popup__form" name="popupForm" novalidate>
+            <button type="submit" class="popup__submit-button" id="submit-delete" name="submit-card-delete"
+            aria-label="Сохранение удаления карточки" disabled>Да</button>
+          </form>
       </div>
     </div>
   </div>

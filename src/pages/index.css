@@ -45,3 +45,7 @@
 @import url('../blocks/popup/__close/popup__close.css');
 @import url('../blocks/popup/__full-image/popup__full-image.css');
 @import url('../blocks/popup/__full-name/popup__full-name.css');
+
+/* @import url('../blocks/photo-feed/photo-err.css');
+@import url('../blocks/card/__like-counter/cards__like-counter.css');
+@import url('../blocks/card/cards__like-area/cards__like-area.css'); */

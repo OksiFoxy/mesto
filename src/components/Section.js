@@ -4,8 +4,9 @@ export default class Section {
       this._renderer = renderer;
       this._itemsGallery = document.querySelector(gallerySelector);
   }
-  renderCards() {
-      this._items.forEach((item) => {
+
+  renderCards(items) {
+      items.forEach((item) => {
         this._renderer(item);
       });
   }

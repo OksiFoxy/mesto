@@ -1,6 +1,7 @@
 export default class Popup {
   constructor(popupSelector) {
       this._popup = document.querySelector(popupSelector);
+      this._submitButton = this._popup.querySelector('.popup__submit-button');
       this._EscClose = this._handleEscClose.bind(this)
   }
 
@@ -19,7 +20,7 @@ export default class Popup {
           this.close();
       }
   }
-// Тут работает оверлей, но не кнопка
+
   setEventListeners() {
     this._popup.addEventListener('mousedown', (evt) => {
         if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
@@ -27,9 +28,12 @@ export default class Popup {
         }
       });
   }
-// Проверка кнопки, тут работает
-//   setEventListeners() {
-//     this._buttonClose = this._popup.querySelector('.popup__close');
-//     this._buttonClose.addEventListener('mousedown', () => this.close()); //Тут работает
-//   }
+
+  proccessActionButtonText(text) {
+    this._submitButton.innerHTML = `${text}<span class="dot-1">.</span><span class="dot-2">.</span><span class="dot-3">.</span>`;
+  }
+
+  finalActionButtonText(text) {
+    this._submitButton.innerHTML = text;
+  }
 }

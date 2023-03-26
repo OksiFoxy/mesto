@@ -1,10 +1,18 @@
 // Тут все ок
 export default class Card {
-  constructor (name, link, cardTemplate, handleCardClick) {
+  constructor (name, link, cardTemplate, userId, authorData, handleActions) {
     this._name = name;
     this._link = link;
     this._cardTemplate = cardTemplate;
-    this._handleCardClick = handleCardClick;
+    // Данные для пользователя
+    this._userId = userId;
+    this._cardId = authorData.cardId;
+    this._authorId = authorData.authorId;
+    // Данные действий
+    this._handleCardClick = handleActions.handleCardClick;
+    this._handleCardDelete = handleActions.handleCardDelete;
+    this._handleCardLike = handleActions.handleCardLike;
+    this._handleDeleteLike = handleActions.handleDeleteLike;
   }
   // Создание карточки
   generateCard() {
@@ -15,9 +23,10 @@ export default class Card {
     this._photo.src = this._link;
     this._title.textContent = this._name;
 
-    this._cardLike = this._cardElement.querySelector('.card__like');  
+    this._cardLike = this._cardElement.querySelector('.card__like');
     this._buttonDelete = this._cardElement.querySelector('.card__delete');
-    this._setEventListener();
+    this.likeSelector = this._cardElement.querySelector('.card__like-counter');
+    this._setEventListeners();
     return this._cardElement;
   }
 
@@ -26,13 +35,44 @@ export default class Card {
     this._cardElement = null;
   }
 
-  _likeToggleActive() {
-    this._cardLike.classList.toggle('card__like-active');
+  // Отображение лайков и их колличества
+  renderCardLike(card) {
+    this._likeArea = card.likes;
+    if (this._likeArea.length === 0) {
+      this.likeSelector.textContent = '';
+    } else {
+      this.likeSelector.textContent = this._likeArea.length;
+    }
+    if (this._likedCard()) {
+      this._cardLike.classList.add('card__like_active');
+    } else {
+      this._cardLike.classList.remove('card__like_active');
+    }
   }
 
-  _setEventListener() {
-    this._cardLike.addEventListener('click', () => this._likeToggleActive());
-    this._buttonDelete.addEventListener('click', () => this._deleteCard());
-    this._photo.addEventListener('click', () => this._handleCardClick(this._link, this._name));
+  // А есть ли лайк?ОК
+  _likedCard() {
+    // Возврат без переменной, так как объявление переменной будет избыточной (Local variable is redundant)
+    return this._likeArea.find((userLike) => userLike._id === this._userId);
   }
+
+  // Добавление снятие лайков ОК
+  _likeToggleActive() {
+    if (this._likedCard()) {
+      this._handleDeleteLike(this._cardId);
+    } else {
+      this._handleCardLike(this._cardId);
+    }
+  }
+
+  //Слушатели ОК
+  _setEventListeners() {
+    this._cardLike.addEventListener('click', () => this._likeToggleActive());
+    this._photo.addEventListener('click', () => this._handleCardClick(this._name, this._link));
+      if (this._userId === this._authorId) {
+        this._buttonDelete.addEventListener('click', () => this._deleteCard(this._cardId));
+      } else {
+        this._buttonDelete.remove();
+      }
+    }
 }
