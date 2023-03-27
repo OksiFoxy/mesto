@@ -19,9 +19,11 @@
 .card__item{border:none;line-height:0;margin:0 auto;min-height:361px;position:relative;width:282px}
 .card__delete{background:url(ce3b64935accf9b8212e.svg) 50% no-repeat;background-color:transparent;border:none;height:19px;padding:0;position:absolute;right:20px;top:20px;width:18px;z-index:2}.card__delete:hover{cursor:pointer;opacity:.6}
 .card__photo{border:none;border-top-left-radius:10px;border-top-right-radius:10px;height:282px;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center;width:282px}.card__photo:hover{background-color:#2a2c2f;content:"";cursor:pointer;opacity:.5;transition:.3s;z-index:0}
-.card__description{align-items:center;background-color:#fff;border-bottom-left-radius:10px;border-bottom-right-radius:10px;display:flex;flex-direction:row;justify-content:space-between;margin:0;padding:25px 15px 31px 21px;width:246px}
+.card__description{align-items:center;background-color:#fff;border-bottom-left-radius:10px;border-bottom-right-radius:10px;display:flex;flex-direction:row;justify-content:space-between;margin:0;padding:22px 21px;width:240px}
 .card__title{color:#000;font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:0;max-width:224px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}
-.card__like{background:url(1ad06e85f169668a1f36.svg);background-color:transparent;border:none;cursor:pointer;height:19px;padding:0;width:22px}.card__like:hover{opacity:.5;transition:.3s}.card__like:active{color:#000}
+.card__like{background:url(1ad06e85f169668a1f36.svg);background-color:transparent;border:none;cursor:pointer;height:19px;margin:0;padding:0;width:22px}.card__like:hover{opacity:.5;transition:.3s}.card__like:active{color:#000}
+.card__like-counter{color:#000;font-size:13px;font-weight:400;line-height:16px;margin:0;padding:0}
+.cards__like-area{align-items:center;display:flex;flex-direction:column;margin:0;padding:0}
 .card__like-active{background:url(dd6a61e81552be95f4b7.svg)}
 .footer{display:flex;flex-direction:row;justify-content:flex-start;margin:0 auto;max-width:880px;padding:66px 0 56px}@media screen and (max-width:767px){.footer{padding:48px 19px 33px}}
 .footer__copyright{color:#545454;font-size:18px;font-weight:400;line-height:22px;margin:0}@media screen and (max-width:767px){.footer__copyright{font-size:14px;font-weight:400;line-height:17px}}
