@@ -16,10 +16,12 @@
     </header>
     <main class="content">
       <section class="profile">
+
         <div class="profile__avatar-section">
-          <img class="profile__avatar" src="#" alt="Аватарка пользователя">
           <button class="profile__avatar-button" type="button" aria-label="Редактировать аватар"></button>
+          <img class="profile__avatar" src="#" alt="Аватарка пользователя">
         </div>
+
         <div class="profile__info">
           <div class="profile__info-content">
             <h1 class="profile__name"></h1>
@@ -109,14 +111,14 @@
       </div>
     </div>
 
-    <div class="popup popup_card-delete">
+    <div class="popup popup_delete">
       <div class="popup__container">
         <button class="popup__close popup__close-full"
           name="button_form-close" aria-label="Закрытие попапа"></button>
           <h2 class="popup__title">Вы уверены?</h2>
-          <form class="popup__form" name="popupForm" novalidate>
+          <form class="popup__form-delete" name="popupFormDelete" novalidate>
             <button type="submit" class="popup__submit-button" id="submit-delete" name="submit-card-delete"
-            aria-label="Сохранение удаления карточки" disabled>Да</button>
+            aria-label="Подтверждение удаления карточки" disabled>Да</button>
           </form>
       </div>
     </div>
