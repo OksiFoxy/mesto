@@ -42,7 +42,7 @@
         <img class="card__photo" src="#" alt="">
         <div class="card__description">
           <h2 class="card__title"></h2>
-          <div class="cards__like-area">
+          <div class="card__like-area">
             <button type="button" class="card__like" alt="Поставить лайк"></button>
             <p class="card__like-counter" value=""></p>
           </div>
@@ -95,19 +95,19 @@
     </div>
 
     <div class="popup popup_avatar">
-          <div class="popup__container">
-            <button type="button" class="popup__close popup__close-card"
-              name="button_form-close" aria-label="Закрытие попап"></button>
-            <h2 class="popup__title">Обновить аватар</h2>
-            <form class="popup__form popup__form-avatar novalidate" name="popup__form" novalidate>
-              <input type="url" id="avatarlink" class="popup__input popup__input_type_avatar-link"
-              placeholder="Ссылка на фото" name="avatarlink" value="" required>
-              <span class="avatarlink-error popup__input-error"></span>
-              <button type="submit" class="popup__submit-button" id="submit-avatar" name="submit-avatar"
-              aria-label="Сохранение редактированного аватара">Сохранить</button>
-            </form>
-          </div>
-        </div>
+      <div class="popup__container">
+        <button type="button" class="popup__close popup__close-card"
+          name="button_form-close" aria-label="Закрытие попап"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="popup__form popup__form-avatar novalidate" name="popup__form" novalidate>
+          <input type="url" id="avatarlink" class="popup__input popup__input_type_card-link"
+          placeholder="Ссылка на фото" name="avatarlink" value="" required>
+          <span class="avatarlink-error popup__input-error"></span>
+          <button type="submit" class="popup__submit-button" id="submit-avatar" name="submit-avatar"
+          aria-label="Сохранение редактированного аватара" disabled>Сохранить</button>
+        </form>
+      </div>
+    </div>
 
     <div class="popup popup_card-delete">
       <div class="popup__container">

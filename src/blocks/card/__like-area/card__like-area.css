@@ -1,6 +1,7 @@
-.cards__like-area {
+.card__like-area {
   margin: 0;
   padding: 0;
+  height: 35px;
   display: flex;
   flex-direction: column;
   align-items: center;
