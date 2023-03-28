@@ -140,7 +140,6 @@ const popupEditProfile = new PopupWithForm(".popup_type_edit", {
 buttonProfileOpen.addEventListener('click', () => {
   popupEditProfile.open();
   profileUser.setUserInfo(profileUser.getUserInfo());
-  validationsProfileForm.resetValidation();
 });
 
 // СЛУШАТЕЛЬ ФОРМЫ
@@ -148,12 +147,12 @@ popupEditProfile.setEventListeners();
 // --------------------------------------------ПОПАП АВАТАРА-------------------------------------------------
 const popupEditAvatar = new PopupWithForm(".popup_avatar", {
   submitForm: (value) => {
-
     popupEditAvatar.proccessActionButtonText('Сохранение');
     api.setUserAvatar({
       avatar: value.avatarlink
     })
       .then((value) => {
+        console.log(value.avatar)
         profileUser.setUserAvatar(value.avatar)
         popupEditAvatar.close();
       })
@@ -169,7 +168,6 @@ buttonProfileAvatar.addEventListener('click', () => {
 
 //СЛУШАТЕЛЬ ФОРМЫ
 popupEditAvatar.setEventListeners();
-
 // --------------------------------------------КАРТОЧКИ--------------------------------------------------------
 // Отправка формы карточки
 const popupAddNewCard = new PopupWithForm(".popup_type_card", {
