@@ -58,7 +58,7 @@ export default class Api {
   //   },
   //   "createdAt": "2019-07-05T08:10:57.741Z"
   // },
-  
+
   createCardApi({ name, link }) {
     return fetch(this._baseUrl + '/cards', {
       headers: this._headers,

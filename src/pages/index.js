@@ -44,16 +44,12 @@ let userId;
 
 //-----------------------------------------ОТРИСОВЫВАЕМ ЧТО ЕСТЬ--------------------------------------------------------
 function createCard(item) {
-  const card = new Card(item.name, item.link, cardTemplate, userId, {cardId: item._id, authorId: item.owner._id, }, {
-    // Увеличение
-    handleCardClick: (link, name) => {popupFullImage.open(name, link)},
-    // Удаление
-    handleCardDelete: (cardId, cardElement) => {popupCardDelete.open(cardId, cardElement)},
+  const card = new Card(item.name, item.link, item.likes, cardTemplate, userId, {cardId: item._id, authorId: item.owner._id, }, {
     // Добавление лайка
     handleCardLike: (cardId) => {
       api.putCardLike(cardId)
         .then((res) => {
-          card.renderCardLike(res);
+          card.renderCardLike(res.likes);
         })
         .catch((err) => { console.log(`Ошибка лайка, ${err}`) })
     },
@@ -61,10 +57,14 @@ function createCard(item) {
     handleDeleteLike: (cardId) => {
       api.deleteCardLike(cardId)
         .then((res) => {
-          card.renderCardLike(res);
+          card.renderCardLike(res.likes);
         })
         .catch((err) => {console.log(`Ошибка дизлайка, ${err}`) })
     },
+     // Увеличение
+     handleCardClick: (link, name) => {popupFullImage.open(name, link)},
+     // Удаление
+     handleCardDelete: (cardElement, cardId) => {popupCardDelete.open(cardElement, cardId)},
   });
   const cardElement = card.generateCard();
   return cardElement;
@@ -90,6 +90,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, items]) => {
     userId = userData._id;
     profileUser.setUserInfo(userData);
+    profileUser.setUserAvatar(userData.avatar);
     cardsSection.renderCards(items);
   })
   .catch((err) => {
@@ -150,10 +151,10 @@ const popupEditAvatar = new PopupWithForm(".popup_avatar", {
 
     popupEditAvatar.proccessActionButtonText('Сохранение');
     api.setUserAvatar({
-      avatar: value.linkavatar
+      avatar: value.avatarlink
     })
-      .then(() => {
-        profileUser.setUserAvatar(value);
+      .then((value) => {
+        profileUser.setUserAvatar(value.avatar)
         popupEditAvatar.close();
       })
       .catch()
@@ -175,7 +176,7 @@ const popupAddNewCard = new PopupWithForm(".popup_type_card", {
   submitForm: (values) => {
     popupAddNewCard.proccessActionButtonText('Создание');
     api.createCardApi({name: values.name, link: values.link})
-      .then(() => {
+      .then((card) => {
         cardsSection.addItem(createCard(card));
         popupAddNewCard.close();
       })

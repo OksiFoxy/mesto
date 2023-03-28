@@ -1,8 +1,9 @@
 // Тут все ок
 export default class Card {
-  constructor (name, link, cardTemplate, userId, authorData, handleActions) {
+  constructor (name, link, likes, cardTemplate, userId, authorData, handleActions) {
     this._name = name;
     this._link = link;
+    this._likes = likes;
     this._cardTemplate = cardTemplate;
     // Данные для пользователя
     this._userId = userId;
@@ -22,10 +23,10 @@ export default class Card {
     this._photo.alt = this._name;
     this._photo.src = this._link;
     this._title.textContent = this._name;
-
     this._cardLike = this._cardElement.querySelector('.card__like');
     this._buttonDelete = this._cardElement.querySelector('.card__delete');
     this.likeSelector = this._cardElement.querySelector('.card__like-counter');
+    this.renderCardLike(this._likes);
     this._setEventListeners();
     return this._cardElement;
   }
@@ -36,24 +37,25 @@ export default class Card {
   }
 
   // Отображение лайков и их колличества
-  renderCardLike(card) {
-    this._likeArea = card.likes;
+  renderCardLike(likes) {
+    this._likeArea = likes;
     if (this._likeArea.length === 0) {
       this.likeSelector.textContent = '';
     } else {
       this.likeSelector.textContent = this._likeArea.length;
     }
     if (this._likedCard()) {
-      this._cardLike.classList.add('card__like_active');
+      this._cardLike.classList.add('card__like-active');
     } else {
-      this._cardLike.classList.remove('card__like_active');
+      this._cardLike.classList.remove('card__like-active');
     }
   }
 
   // А есть ли лайк?ОК
   _likedCard() {
+    console.log("like")
     // Возврат без переменной, так как объявление переменной будет избыточной (Local variable is redundant)
-    return this._likeArea.find((userLike) => userLike._id === this._userId);
+    return (this._likeArea || [] ).find((userLike) => userLike._id === this._userId);
   }
 
   // Добавление снятие лайков ОК
@@ -69,10 +71,11 @@ export default class Card {
   _setEventListeners() {
     this._cardLike.addEventListener('click', () => this._likeToggleActive());
     this._photo.addEventListener('click', () => this._handleCardClick(this._name, this._link));
-      if (this._userId === this._authorId) {
-        this._buttonDelete.addEventListener('click', () => this._deleteCard(this._cardId));
-      } else {
-        this._buttonDelete.remove();
-      }
+    // Delete button
+    if (this._userId === this._authorId) {
+      this._buttonDelete.addEventListener('click', () => this._handleCardDelete(this._cardId, this));
+    } else {
+      this._buttonDelete.remove();
+    };
     }
 }

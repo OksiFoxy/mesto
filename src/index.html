@@ -16,12 +16,10 @@
     </header>
     <main class="content">
       <section class="profile">
-
         <div class="profile__avatar-section">
-          <button class="profile__avatar-button" type="button" aria-label="Редактировать аватар"></button>
           <img class="profile__avatar" src="#" alt="Аватарка пользователя">
+          <button class="profile__avatar-button" type="button" aria-label="Редактировать аватар"></button>
         </div>
-
         <div class="profile__info">
           <div class="profile__info-content">
             <h1 class="profile__name"></h1>
@@ -46,7 +44,7 @@
           <h2 class="card__title"></h2>
           <div class="cards__like-area">
             <button type="button" class="card__like" alt="Поставить лайк"></button>
-            <span class="card__like-counter">0</span>
+            <p class="card__like-counter" value=""></p>
           </div>
         </div>
       </li>
@@ -97,28 +95,28 @@
     </div>
 
     <div class="popup popup_avatar">
-      <div class="popup__container">
-        <button class="popup__close popup__close-full"
-          name="button_form-close" aria-label="Закрытие попапа"></button>
-        <h2 class="popup__title">Обновить аватар</h2>
-        <form class="popup__form popup__form-avatar novalidate" name="popup__form" novalidate>
-          <input type="url" id="linkavatar" class="popup__input popup__input_type_avatar"
-          placeholder="Ссылка на фото" name="linkavatar" value="" required>
-          <span class="cardname-error popup__input-error"></span>
-          <button type="submit" class="popup__submit-button" id="submit-avatar" name="submit-avatar"
-          aria-label="Сохранение редактированного фото">Сохранить</button>
-        </form>
-      </div>
-    </div>
+          <div class="popup__container">
+            <button type="button" class="popup__close popup__close-card"
+              name="button_form-close" aria-label="Закрытие попап"></button>
+            <h2 class="popup__title">Обновить аватар</h2>
+            <form class="popup__form popup__form-avatar novalidate" name="popup__form" novalidate>
+              <input type="url" id="cardlink" class="popup__input popup__input_type_card-link"
+              placeholder="Ссылка на фото" name="avatarlink" value="" required>
+              <span class="cardlink-error popup__input-error"></span>
+              <button type="submit" class="popup__submit-button" id="submit-avatar" name="submit-avatar"
+              aria-label="Сохранение редактированного аватара" disabled>Сохранить</button>
+            </form>
+          </div>
+        </div>
 
-    <div class="popup popup_delete">
+    <div class="popup popup_card-delete">
       <div class="popup__container">
         <button class="popup__close popup__close-full"
           name="button_form-close" aria-label="Закрытие попапа"></button>
           <h2 class="popup__title">Вы уверены?</h2>
-          <form class="popup__form-delete" name="popupFormDelete" novalidate>
+          <form class="popup__form" name="popupForm" novalidate>
             <button type="submit" class="popup__submit-button" id="submit-delete" name="submit-card-delete"
-            aria-label="Подтверждение удаления карточки" disabled>Да</button>
+            aria-label="Сохранение удаления карточки">Да</button>
           </form>
       </div>
     </div>
