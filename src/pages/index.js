@@ -163,6 +163,7 @@ const popupEditAvatar = new PopupWithForm(".popup_avatar", {
 
 // Слушать кнопки попапа с формой редактирования аватара
 buttonProfileAvatar.addEventListener('click', () => {
+  validationsAvatarForm.resetValidation();
   popupEditAvatar.open();
 });
 
