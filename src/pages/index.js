@@ -26,6 +26,7 @@ const popupCard = document.querySelector('.popup_type_card');
 const formPopupCard = document.querySelector('.popup__form-card');
 const popupAvatar = document.querySelector('.popup_avatar');
 const formPopupAvatar = document.querySelector('.popup__form-avatar');
+const formDelete = document.querySelector('.popup__form-delete');
 
 // ВАЛИДАЦИЯ
 const validationsProfileForm = new FormValidator (selectors, popupProfile);
@@ -106,9 +107,9 @@ const popupFullImage = new PopupWithImage(".popup_full_photo");
 popupFullImage.setEventListeners();
 // ------------------------------------ПОПАП УДАЛЕНИЯ КАРТОЧКИ------------------------------------------------
 const popupCardDelete = new PopupWithDelete(".popup_card-delete", {
-  cardDelete: (cardId, cardElement) => {
+  cardDelete: (cardElement) => {
     popupCardDelete.proccessActionButtonText('Удаление');
-    api.deleteCard(cardId)
+    api.deleteCard(cardElement._id)
       .then(() => {
         cardElement.deleteCard();
         popupCardDelete.close();

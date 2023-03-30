@@ -73,7 +73,7 @@ export default class Card {
     this._photo.addEventListener('click', () => this._handleCardClick(this._name, this._link));
     // Delete button
     if (this._userId === this._authorId) {
-      this._buttonDelete.addEventListener('click', () => this._handleCardDelete(this._cardId, this));
+      this._buttonDelete.addEventListener('click', () => this._handleCardDelete( this._cardElement));
     } else {
       this._buttonDelete.remove();
     };
