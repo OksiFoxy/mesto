@@ -28,6 +28,7 @@ export default class Card {
     this.likeSelector = this._cardElement.querySelector('.card__like-counter');
     this.renderCardLike(this._likes);
     this._setEventListeners();
+    this.hiddenTrash();
     return this._cardElement;
   }
 
@@ -67,15 +68,17 @@ export default class Card {
     }
   }
 
+hiddenTrash() {
+  this.isMyCard = this._userId === this._authorId;
+  if (!this.isMyCard) {
+    this._buttonDelete.remove();
+  }
+}
+
   //Слушатели ОК
   _setEventListeners() {
     this._cardLike.addEventListener('click', () => this._likeToggleActive());
     this._photo.addEventListener('click', () => this._handleCardClick(this._name, this._link));
-    // Delete button
-    if (this._userId === this._authorId) {
-      this._buttonDelete.addEventListener('click', () => this._handleCardDelete( this._cardElement));
-    } else {
-      this._buttonDelete.remove();
-    };
+    this._buttonDelete.addEventListener('click', () => this._handleCardDelete(this._cardId, this));
     }
 }

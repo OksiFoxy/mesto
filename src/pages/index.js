@@ -1,5 +1,6 @@
 import Card from "../components/Card.js";
 import { selectors } from '../utils/constants.js';
+import { apiConfig } from "../utils/apiConfig.js";
 import FormValidator from '../components/FormValidator.js';
 import '../pages/index.css'
 import Section from "../components/Section.js";
@@ -7,7 +8,6 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithDelete from "../components/PopupWithDelete";
 import UserInfo from "../components/UserInfo.js";
-import { apiConfig } from "../utils/apiConfig.js";
 import Api from "../components/Api.js";
 
 const popupProfile = document.querySelector('.popup_type_edit');
@@ -96,8 +96,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   })
   .catch((err) => {
     console.log('Ошибка при получении данных юзера и карточек: ', err);
-    profileUser.setUserInfo({profileNameSelector: 'Жак-Ив Кусто', profileAboutSelector: 'Исследователь океанов'});
-    document.querySelector('.photo-err').innerHTML = `<p style='text-align: center'>Что-то не так :(</p>`
   })
 //__________________________________________ЭКЗЕМПЛЯРЫ КЛАССОВ ПОПАПОВ_____________________________________________
 // ---------------------------------------ПОПАП ФУЛЛ ПРОСМОТРА КАРТОЧКИ---------------------------------------------------
@@ -111,14 +109,14 @@ const popupCardDelete = new PopupWithDelete(".popup_card-delete", {
     popupCardDelete.proccessActionButtonText('Удаление');
     api.deleteCard(cardElement._id)
       .then(() => {
-        cardElement.deleteCard();
+        cardElement.deleteCard(cardId);
         popupCardDelete.close();
       })
       .catch(err => console.log('При удалении произошла ошибка: ', err))
       .finally(() => popupCardDelete.finalActionButtonText('Да'))
   }
 });
-// СЛУШАТЕЛЬ ФОРМЫ
+// СЛУШАТЕЛЬ
 popupCardDelete.setEventListeners();
 // -----------------------------------ПОПАП РЕДАКТИРОВАНИЯ ПРОФИЛЯ----------------------------------------------
 const popupEditProfile = new PopupWithForm(".popup_type_edit", {
@@ -157,7 +155,7 @@ const popupEditAvatar = new PopupWithForm(".popup_avatar", {
         profileUser.setUserAvatar(value.avatar)
         popupEditAvatar.close();
       })
-      .catch()
+      .catch(err => console.log('Ошибка при смене аватара: ', err))
       .finally(() => popupEditAvatar.finalActionButtonText('Сохранить'))
   }
 });
