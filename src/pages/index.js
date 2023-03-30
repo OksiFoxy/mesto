@@ -108,14 +108,14 @@ const popupCardDelete = new PopupWithDelete(".popup_card-delete", {
     popupCardDelete.proccessActionButtonText('Удаление');
     api.deleteCard(cardId)
       .then(() => {
-        cardElement.deleteCard();
+        cardElement.deleteCard(cardId);
         popupCardDelete.close();
       })
       .catch(err => console.log('При удалении произошла ошибка: ', err))
       .finally(() => popupCardDelete.finalActionButtonText('Да'))
   }
 });
-// СЛУШАТЕЛЬ ФОРМЫ
+// СЛУШАТЕЛЬ
 popupCardDelete.setEventListeners();
 // -----------------------------------ПОПАП РЕДАКТИРОВАНИЯ ПРОФИЛЯ----------------------------------------------
 const popupEditProfile = new PopupWithForm(".popup_type_edit", {
