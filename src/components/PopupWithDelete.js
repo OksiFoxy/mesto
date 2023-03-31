@@ -8,18 +8,13 @@ export default class PopupWithDelete extends Popup {
     this._popupForm = this._popup.querySelector('.popup__form');
   }
 
-  open(cardElement) {
+  open(cardId, cardElement) {
     this._cardElement = cardElement;
+    this._cardId = cardId;
     super.open();
   }
 
 // Навешиваем обработчики на кнопку подтверждения, наследуем из родителя остальные
-  // setEventListeners() {
-  //   super.setEventListeners();
-  //   this._submitButton.addEventListener('click', () =>
-  //   this._deleteCallback(this._cardId, this._cardElement))
-  // }
-
   setEventListeners() {
     super.setEventListeners();
     this._popupForm.addEventListener('submit', (evt) => {

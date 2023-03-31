@@ -74,7 +74,7 @@ function createCard(item) {
 // Добавление уже данных в массиве карточек, было из массива, должно из сервера.
 const cardsSection = new Section ({
   renderer: (item) => {
-    cardsSection.addItem(createCard(item));
+    cardsSection.addItemAppend(createCard(item));
   }},
   ".cards__list"
 );
@@ -105,11 +105,11 @@ const popupFullImage = new PopupWithImage(".popup_full_photo");
 popupFullImage.setEventListeners();
 // ------------------------------------ПОПАП УДАЛЕНИЯ КАРТОЧКИ------------------------------------------------
 const popupCardDelete = new PopupWithDelete(".popup_card-delete", {
-  cardDelete: (cardElement) => {
+  cardDelete: (cardId, cardElement) => {
     popupCardDelete.proccessActionButtonText('Удаление');
-    api.deleteCard(cardElement._id)
+    api.deleteCard(cardId)
       .then(() => {
-        cardElement.deleteCard(cardId);
+        cardElement.deleteCard();
         popupCardDelete.close();
       })
       .catch(err => console.log('При удалении произошла ошибка: ', err))
@@ -137,9 +137,14 @@ const popupEditProfile = new PopupWithForm(".popup_type_edit", {
 
 // Слушатель кнопки попапа с формой редактирования профиля
 buttonProfileOpen.addEventListener('click', () => {
+  const dataUser = profileUser.getUserInfo();
+  inputProfileName.value = dataUser.name;
+  inputProfileAbout.value = dataUser.about;
   popupEditProfile.open();
+  popupEditProfile.resetValidation();
   profileUser.setUserInfo(profileUser.getUserInfo());
 });
+
 
 // СЛУШАТЕЛЬ ФОРМЫ
 popupEditProfile.setEventListeners();
@@ -175,7 +180,7 @@ const popupAddNewCard = new PopupWithForm(".popup_type_card", {
     popupAddNewCard.proccessActionButtonText('Создание');
     api.createCardApi({name: values.name, link: values.link})
       .then((card) => {
-        cardsSection.addItem(createCard(card));
+        cardsSection.addItemPreppend(createCard(card));
         popupAddNewCard.close();
       })
       .catch(err => console.log('Ошибка при добавлении карточки: ', err))

@@ -1,8 +1,7 @@
 .card__item {
   width: 282px;
-  min-height: 361px;
+  max-height: 361px;
   margin: 0 auto;
   border: none;
-  line-height: 0;
   position: relative;
 }
