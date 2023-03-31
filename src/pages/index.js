@@ -106,14 +106,14 @@ popupFullImage.setEventListeners();
 // ------------------------------------ПОПАП УДАЛЕНИЯ КАРТОЧКИ------------------------------------------------
 const popupCardDelete = new PopupWithDelete(".popup_card-delete", {
   cardDelete: (cardId, cardElement) => {
-    popupCardDelete.proccessActionButtonText('Удаление');
+    popupCardDelete.actionProccessButtonText('Удаление');
     api.deleteCard(cardId)
       .then(() => {
         cardElement.deleteCard();
         popupCardDelete.close();
       })
       .catch(err => console.log('При удалении произошла ошибка: ', err))
-      .finally(() => popupCardDelete.finalActionButtonText('Да'))
+      .finally(() => popupCardDelete.actionFinalButtonText('Да'))
   }
 });
 // СЛУШАТЕЛЬ
@@ -121,7 +121,7 @@ popupCardDelete.setEventListeners();
 // -----------------------------------ПОПАП РЕДАКТИРОВАНИЯ ПРОФИЛЯ----------------------------------------------
 const popupEditProfile = new PopupWithForm(".popup_type_edit", {
   submitForm: (values) => {
-    popupEditProfile.proccessActionButtonText('Сохранение')
+    popupEditProfile.actionProccessButtonText('Сохранение')
     api.setUserInfo({
       name: values.name,
       about: values.about
@@ -131,17 +131,18 @@ const popupEditProfile = new PopupWithForm(".popup_type_edit", {
         popupEditProfile.close();
       })
       .catch(err => console.log('Ошибка: ', err))
-      .finally(() => popupEditProfile.finalActionButtonText('Сохранить'))
+      .finally(() => popupEditProfile.actionFinalButtonText('Сохранить'))
   }
 });
 
 // Слушатель кнопки попапа с формой редактирования профиля
 buttonProfileOpen.addEventListener('click', () => {
+  validationsProfileForm.resetValidation();
   const dataUser = profileUser.getUserInfo();
   inputProfileName.value = dataUser.name;
   inputProfileAbout.value = dataUser.about;
   popupEditProfile.open();
-  popupEditProfile.resetValidation();
+
   profileUser.setUserInfo(profileUser.getUserInfo());
 });
 
@@ -151,7 +152,7 @@ popupEditProfile.setEventListeners();
 // --------------------------------------------ПОПАП АВАТАРА-------------------------------------------------
 const popupEditAvatar = new PopupWithForm(".popup_avatar", {
   submitForm: (value) => {
-    popupEditAvatar.proccessActionButtonText('Сохранение');
+    popupEditAvatar.actionProccessButtonText('Сохранение');
     api.setUserAvatar({
       avatar: value.avatarlink
     })
@@ -161,7 +162,7 @@ const popupEditAvatar = new PopupWithForm(".popup_avatar", {
         popupEditAvatar.close();
       })
       .catch(err => console.log('Ошибка при смене аватара: ', err))
-      .finally(() => popupEditAvatar.finalActionButtonText('Сохранить'))
+      .finally(() => popupEditAvatar.actionFinalButtonText('Сохранить'))
   }
 });
 
@@ -177,14 +178,14 @@ popupEditAvatar.setEventListeners();
 // Отправка формы карточки
 const popupAddNewCard = new PopupWithForm(".popup_type_card", {
   submitForm: (values) => {
-    popupAddNewCard.proccessActionButtonText('Создание');
+    popupAddNewCard.actionProccessButtonText('Создание');
     api.createCardApi({name: values.name, link: values.link})
       .then((card) => {
         cardsSection.addItemPreppend(createCard(card));
         popupAddNewCard.close();
       })
       .catch(err => console.log('Ошибка при добавлении карточки: ', err))
-      .finally(() => popupAddNewCard.finalActionButtonText('Создать'))
+      .finally(() => popupAddNewCard.actionFinalButtonText('Создать'))
   }
 });
 

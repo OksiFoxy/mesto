@@ -60,7 +60,7 @@ export default class Card {
   }
 
   // Добавление снятие лайков ОК
-  _likeToggleActive() {
+  _toggleLikeActive() {
     if (this._likedCard()) {
       this._handleDeleteLike(this._cardId);
     } else {
@@ -77,7 +77,7 @@ hiddenTrash() {
 
   //Слушатели ОК
   _setEventListeners() {
-    this._cardLike.addEventListener('click', () => this._likeToggleActive());
+    this._cardLike.addEventListener('click', () => this._toggleLikeActive());
     this._photo.addEventListener('click', () => this._handleCardClick(this._name, this._link));
     this._buttonDelete.addEventListener('click', () => this._handleCardDelete(this._cardId, this));
     }

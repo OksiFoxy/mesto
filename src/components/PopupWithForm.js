@@ -32,11 +32,11 @@ export default class PopupWithForm extends Popup {
     this._popupForm.reset();
   }
 
-  proccessActionButtonText() {
+  actionProccessButtonText() {
     this._submitButton.textContent = `Сохраняем`;
   }
 
-  finalActionButtonText() {
+  actionFinalButtonText() {
     this._submitButton.textContent = `Готово`;
   }
 }

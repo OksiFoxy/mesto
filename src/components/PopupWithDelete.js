@@ -1,7 +1,7 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithDelete extends Popup {
-  constructor(popupSelector, { cardDelete }, formDelete) {
+  constructor(popupSelector, { cardDelete }) {
     super(popupSelector);
     this._deleteCallback = cardDelete;
     this._submitButton = this._popup.querySelector('.popup__submit-button');
@@ -23,11 +23,11 @@ export default class PopupWithDelete extends Popup {
     })
   }
 
-  proccessActionButtonText() {
+  actionProccessButtonText() {
     this._submitButton.textContent = `Удаляем`;
   }
 
-  finalActionButtonText() {
+  actionFinalButtonText() {
     this._submitButton.textContent = `Готово`;
   }
 }
